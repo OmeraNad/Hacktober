@@ -66,3 +66,100 @@ h3{
     color: #000;
     box-shadow: 0 4px 6px #fff;
 }
+
+
+
+
+
+
+@import url('https://googleapis.com');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Immersive, smoky digital-noir gradient */
+    background: radial-gradient(circle at center, #111424 0%, #070810 100%);
+    align-items: center; /* Centered vertically for a cleaner menu layout */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    color: #f1f5f9;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+h1 {
+    font-family: 'Tektur', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    cursor: default;
+    color: #06b6d4; /* Neon cyan terminal title color */
+    letter-spacing: 4px;
+    /* Multilayered terminal glow */
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 
+                 0 0 30px rgba(6, 182, 212, 0.2);
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family: 'Share Tech Mono', monospace; /* Techy sub-headline font */
+    text-align: center;
+    color: #94a3b8; /* Muted silver text */
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+}
+
+.button-wrapper {
+    display: flex;
+    gap: 2rem; /* Clean modern spacing instead of huge margins */
+    justify-content: center;
+}
+
+/* Base button structure combined for clean code */
+.b1, .b2 {
+    font-family: 'Tektur', sans-serif;
+    padding: 1rem 2.5rem;
+    background: rgba(30, 41, 59, 0.7); /* Translucent tech slate */
+    color: #38bdf8; /* Electric blue text */
+    border: 1px solid #0284c7;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Hover effects look like an active holographic target selection */
+.b1:hover, .b2:hover {
+    background: #0284c7;
+    color: #fff;
+    border-color: #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Active press down click state */
+.b1:active, .b2:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
