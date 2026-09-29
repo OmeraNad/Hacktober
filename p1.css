@@ -112,3 +112,27 @@ p {
         transform: translateY(0); 
     } 
 }
+.next{
+    font-size: 1.1rem;
+     font-family: 'Tektur', sans-serif;
+    padding: 1rem 2.5rem;
+    background: rgba(30, 41, 59, 0.7); /* Translucent tech slate */
+    color: #38bdf8; /* Electric blue text */
+    border: 1px solid #0284c7;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+     display: block; 
+    margin-left: auto;
+    margin-right: 2rem;
+}
+.next:hover{
+    background: #0284c7;
+    color: #fff;
+    border-color: #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+}
