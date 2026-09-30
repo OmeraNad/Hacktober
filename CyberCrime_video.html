@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cybercrime Awareness: Think Before You Click</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:#070a22;color:#fff;font-family:'Segoe UI',Roboto,Arial,sans-serif;overflow:hidden}
+#wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#box{position:relative;overflow:hidden;background:#000}
+#stage{width:1920px;height:1080px;position:absolute;left:0;top:0;transform-origin:0 0;background:linear-gradient(135deg,#0f1b6b,#3b1a8c 60%,#1b2a9e);overflow:hidden}
+#stage:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(120,160,255,.09) 2px,transparent 2px),linear-gradient(90deg,rgba(120,160,255,.09) 2px,transparent 2px);background-size:80px 80px;animation:grid 12s linear infinite}
+@keyframes grid{to{background-position:80px 80px}}
+.sc{position:absolute;inset:0;opacity:0;transform:translateX(60px);transition:opacity .7s,transform .7s;pointer-events:none}
+.sc.on{opacity:1;transform:none}
+h2{position:absolute;left:110px;top:70px;margin:0;font-size:68px;letter-spacing:.5px;text-shadow:0 4px 20px #0006}
+h2 small{display:block;font-size:30px;color:#a9b8ff;font-weight:400;margin-bottom:6px}
+.ch{position:absolute;left:120px;top:250px;width:440px;height:620px;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-16px)}}
+.blink{animation:bl 4s infinite;transform-origin:center;transform-box:fill-box}
+@keyframes bl{95%,100%{transform:scaleY(.1)}}
+.card{position:absolute;left:720px;top:270px;width:1080px;height:300px;background:#fff;color:#1a1f4d;border-radius:36px;box-shadow:0 30px 80px #0008;padding:40px 50px;box-sizing:border-box;display:flex;align-items:center;gap:36px;transform:scale(.85);transition:transform .8s .3s}
+.on .card{transform:none}
+.card .e{font-size:120px}
+.card .t{font-size:46px;font-weight:600;line-height:1.25}
+.v{position:absolute;left:720px;top:600px;font-size:44px;font-weight:700;background:#ffcf33;color:#3a1a00;padding:14px 34px;border-radius:60px;opacity:0;animation:none}
+.on .v{animation:pop .6s 1.6s forwards}
+@keyframes pop{0%{opacity:0;transform:scale(.5)}70%{transform:scale(1.1)}100%{opacity:1;transform:none}}
+.chips{position:absolute;left:720px;top:720px;display:flex;flex-wrap:wrap;gap:20px;width:1100px}
+.chip{font-size:34px;padding:14px 28px;border-radius:50px;background:#7c5cff;box-shadow:0 8px 24px #0006;opacity:0}
+.on .chip{animation:pop .5s forwards}
+.ic{position:absolute;font-size:96px;animation:fl 4s ease-in-out infinite;filter:drop-shadow(0 8px 12px #0006)}
+.i1{left:1620px;top:110px}.i2{left:1400px;top:120px;animation-delay:-1s}.i3{left:640px;top:140px;animation-delay:-2s}
+@keyframes fl{50%{transform:translateY(-24px) rotate(6deg)}}
+.end{position:absolute;left:0;right:0;top:120px;text-align:center}
+.end .sh{font-size:260px;animation:glow 2s ease-in-out infinite}
+@keyframes glow{50%{filter:drop-shadow(0 0 60px #6fa8ff);transform:scale(1.06)}}
+.end h1{font-size:110px;margin:10px 0 30px}
+.end p{font-size:56px;margin:14px;color:#dfe6ff}.end b{color:#ffd54a}
+#sub{position:absolute;left:160px;right:160px;bottom:60px;text-align:center;font-size:46px;line-height:1.3;background:#000a;border-radius:18px;padding:16px 30px;min-height:64px;z-index:5}
+#bar{position:absolute;left:0;bottom:0;height:12px;width:100%;background:#fff3;z-index:6;cursor:pointer}
+#fill{height:100%;width:0;background:#8fb0ff}
+#ctl{margin-top:10px;display:flex;gap:10px;align-items:center;font-size:16px}
+button{background:#5b4bff;color:#fff;border:0;border-radius:8px;padding:8px 16px;font-size:16px;cursor:pointer}
+#start{position:absolute;inset:0;z-index:9;background:#0b1030e6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center}
+#start h1{font-size:76px;margin:0}#start p{font-size:32px;margin:0;color:#b7c4ff}
+#start button{font-size:44px;padding:20px 60px;border-radius:60px}
+
+.quiz-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    padding: 14px 30px;
+
+    background: #2563EB;
+    color: white;
+
+    border: 2px solid #1E1B48;
+    border-radius: 12px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    box-shadow: 0 5px 15px rgba(34, 211, 238, 0.5);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.quiz-btn:hover {
+    background: #3B82F6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(34, 211, 238, 0.8);
+}
+</style></head><body>
+<div id="wrap"><div id="box"><div id="stage">
+<div id="start"><div style="font-size:120px">🛡️</div><h1>Cybercrime Awareness</h1><p>Think Before You Click · 2 min 50 s</p><button id="go">▶ Play</button></div>
+<div id="sub"></div><div id="bar"><div id="fill"></div></div></div></div>
+<div id="ctl"><button id="pp">Pause</button><button id="rs">Restart</button><button id="mu">Music: on</button><button id="vo">Voice: on</button><span id="tm">0:00 / 2:50</span></div></div>
+<script>
+const S=[
+{s:0,t:"Introduction",e:["💻","📱","🛡️"],c:["Cybercrime = crime using computers & phones","Stay alert online"],m:["🎓","Meet Aarav, a student who lives online."],v:"Think Before You Click",n:"Meet Aarav, a college student. Like all of us, he lives online, on his laptop and phone. But cybercriminals are online too. Let's learn to spot common cybercrimes, and stay safe by thinking before we click."},
+{s:15,t:"Phishing & Fake Links",e:["📧","🎣","🔗"],c:["Hover over links first","Check the sender's address","Never share passwords"],m:["🎁","CONGRATS! You won ₹10,00,000! Click: bit.ly/claim-now"],v:"⚠ Fake prize = phishing",n:"Aarav gets an email saying he won a huge prize. It's phishing! Fake links try to steal your passwords. Never click unknown links. Check the sender, look at the web address, and type official sites yourself."},
+{s:32,t:"UPI & Online Financial Fraud",e:["💳","📷","🔢"],c:["Never share your OTP","UPI PIN is only to SEND money","Receiving money needs no PIN"],m:["📷","Scan this QR to RECEIVE ₹5,000"],v:"Scanning QR = you pay!",n:"A stranger sends a QR code to receive money. But scanning and entering your UPI PIN sends money out. Never share your OTP or PIN with anyone, not even someone claiming to be your bank."},
+{s:49,t:"Identity Theft",e:["🪪","🕵️","🔑"],c:["Long, unique passwords","Turn on 2-step login","Don't overshare personal details"],m:["🪪","Name · Aadhaar · Date of birth — stolen!"],v:"Guard your identity",n:"Identity thieves steal your personal details to pretend to be you. Use long, unique passwords, turn on two-step login, and never post your Aadhaar, phone number, or birth date publicly."},
+{s:66,t:"Cyberbullying",e:["💬","🚫","🤝"],c:["Block the bully","Report the account","Save screenshots as evidence","Talk to someone you trust"],m:["💬","You're so pathetic. Everyone hates you."],v:"Block · Report · Save proof",n:"Hurtful messages online are cyberbullying. It is not your fault. Block the person, report the account, and save screenshots as evidence. Talk to a friend, family member, or teacher. You are not alone."},
+{s:83,t:"Impersonation Scams",e:["👤","🎭","☎️"],c:["Verify by calling","Check profile history","Never send money in a hurry"],m:["👤","Hi, it's me! Emergency! Send ₹8,000 urgently."],v:"Verify before you pay",n:"A fake profile copies a friend's photo and asks for urgent money. Stop and verify. Call your friend on their known number, check the profile carefully, and never send money because of pressure."},
+{s:100,t:"Hacking & Unauthorized Access",e:["🖥️","🔓","🔐"],c:["Use 2-step verification","Never reuse passwords","Avoid logins on public Wi-Fi"],m:["🔓","Alert: login from an unknown device!"],v:"Change your password now",n:"Hackers try to break into accounts. Protect yours with strong passwords and two-step verification. Use a different password for every account, avoid public Wi-Fi for logins, and act fast if you see strange activity."},
+{s:117,t:"Malware & Ransomware",e:["🦠","🔒","💾"],c:["Download from official stores","Update your devices","Back up your files"],m:["🔒","Your files are LOCKED. Pay ₹50,000 to unlock."],v:"Backups beat ransom",n:"Malware can infect your computer, and ransomware locks your files until you pay. Download only from official sources, keep software updated, and back up important files regularly, so you never need to pay."},
+{s:134,t:"Stalking & Privacy Violations",e:["📍","👁️","⚙️"],c:["Make accounts private","Turn off location sharing","Report threats"],m:["📍","Your live location is visible to everyone."],v:"Check privacy settings",n:"Online stalkers track your posts and location. Set your accounts to private, switch off location sharing, and accept only people you know. If someone threatens or follows you online, report it immediately."},
+{s:151,end:1,n:"Now you know how to stay safe. Think before you click, protect your details, and speak up. If you face financial cyber fraud, dial 1930 quickly, and report cybercrime at cybercrime dot gov dot in."}
+];
+const TOTAL=170,st=document.getElementById('stage'),sub=document.getElementById('sub');
+const chr=(w)=>`<svg class="ch" viewBox="0 0 300 420"><ellipse cx="150" cy="405" rx="90" ry="10" fill="#0004"/><path d="M60 410 Q60 250 150 240 Q240 250 240 410Z" fill="#7c5cff"/><path d="M120 245 L150 300 L180 245Z" fill="#dfe6ff"/><rect x="132" y="200" width="36" height="50" rx="14" fill="#f0b58a"/><circle cx="150" cy="150" r="70" fill="#f7c59f"/><path d="M78 145 Q80 70 150 70 Q222 70 222 145 Q200 105 150 108 Q100 105 78 145Z" fill="#2a1f4d"/><g class="blink"><circle cx="122" cy="155" r="9" fill="#1a1f4d"/><circle cx="178" cy="155" r="9" fill="#1a1f4d"/></g>${w?'<path d="M125 192 Q150 178 175 192" stroke="#8a3b2a" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M105 132 L135 138M195 132 L165 138" stroke="#2a1f4d" stroke-width="6" stroke-linecap="round"/>':'<path d="M122 182 Q150 210 178 182" stroke="#8a3b2a" stroke-width="7" fill="none" stroke-linecap="round"/>'}<rect x="20" y="300" width="70" height="120" rx="8" fill="none"/></svg>`;
+S.forEach((x,i)=>{let h=`<section class="sc" id="s${i}">`;
+ if(x.end)h+=`<div class="end"><div class="sh">🛡️</div><h1>Think Before You Click</h1><p>Report cybercrime: <b>cybercrime.gov.in</b></p><p>Financial cyber fraud helpline: <b>1930</b></p><p style="font-size:38px;color:#a9b8ff">Cybercrime Awareness · Student Project · India</p></div>`;
+ else h+=`<h2><small>Scene ${i+1} of 10</small>${x.t}</h2>${chr(i>0&&i<9)}<div class="card"><div class="e">${x.m[0]}</div><div class="t">${x.m[1]}</div></div><div class="v">${x.v}</div><div class="chips">${x.c.map((c,j)=>`<div class="chip" style="animation-delay:${2.2+j*.7}s">${c}</div>`).join('')}</div>${x.e.map((e,j)=>`<div class="ic i${j+1}">${e}</div>`).join('')}`;
+ st.insertAdjacentHTML('afterbegin',h+'</section>');S[i].sen=x.n.match(/[^.!?]+[.!?]/g)||[x.n];S[i].end_=i<9?S[i+1].s:TOTAL});
+const box=document.getElementById('box');
+function fit(){const k=Math.min(innerWidth/1920,(innerHeight-60)/1080);box.style.width=1920*k+'px';box.style.height=1080*k+'px';st.style.transform=`scale(${k})`}
+addEventListener('resize',fit);fit();
+let t=0,play=false,cur=-1,last=0,ac,mus=true,voice=true,ci=0;
+function speak(x){speechSynthesis.cancel();if(!voice)return;const u=new SpeechSynthesisUtterance(x.n),v=speechSynthesis.getVoices();u.voice=v.find(a=>a.lang=='en-IN')||v.find(a=>a.lang.startsWith('en'))||null;u.lang='en-IN';u.rate=1.02;speechSynthesis.speak(u)}
+function chord(){if(!ac||!mus||!play)return;const C=[[220,261.6,329.6],[174.6,220,261.6],[261.6,329.6,392],[196,246.9,293.7]][ci++%4],n=ac.currentTime;C.forEach(f=>{const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(.025,n+1.5);g.gain.linearRampToValueAtTime(0,n+4.2);o.connect(g).connect(ac.destination);o.start(n);o.stop(n+4.3)})}
+function show(i){cur=i;document.querySelectorAll('.sc').forEach((e,j)=>e.classList.toggle('on',j==i));speak(S[i])}
+function tick(now){const dt=(now-last)/1000;last=now;if(play){t+=dt;if(t>=TOTAL){t=TOTAL-.01;play=false;pp.textContent='Replay'}
+ let i=0;S.forEach((x,j)=>{if(t>=x.s)i=j});if(i!=cur)show(i);
+ const x=S[cur],p=(t-x.s)/(x.end_-x.s),tot=x.sen.reduce((a,b)=>a+b.length,0);let a=0,k=0;x.sen.forEach((s,j)=>{if(p*tot>=a)k=j;a+=s.length});sub.textContent=x.sen[k].trim();
+ fill.style.width=t/TOTAL*100+'%';const f=n=>Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0');tm.textContent=f(t)+' / 2:50'}
+ requestAnimationFrame(tick)}
+const $=id=>document.getElementById(id),fill=$('fill'),tm=$('tm'),pp=$('pp');
+function begin(){ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume();play=true;last=performance.now();chord();}
+$('go').onclick=()=>{$('start').style.display='none';t=0;cur=-1;begin()};
+pp.onclick=()=>{if(t>=TOTAL-.05){t=0;cur=-1}play=!play||t==0;if(!play){speechSynthesis.pause()}else{speechSynthesis.resume()}pp.textContent=play?'Pause':'Play'};
+$('rs').onclick=()=>{t=0;cur=-1;play=true;pp.textContent='Pause';speechSynthesis.cancel()};
+$('mu').onclick=e=>{mus=!mus;e.target.textContent='Music: '+(mus?'on':'off')};
+$('vo').onclick=e=>{voice=!voice;e.target.textContent='Voice: '+(voice?'on':'off');if(!voice)speechSynthesis.cancel();else if(cur>=0)speak(S[cur])};
+$('bar').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();t=(e.clientX-r.left)/r.width*TOTAL;cur=-1};
+setInterval(chord,4000);requestAnimationFrame(t0=>{last=t0;tick(t0)});
+</script>
+<a href="CyberCrime.html"><button class="quiz-btn">Quiz</button></a>
+</body></html>

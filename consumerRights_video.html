@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Consumer Rights in India: Be Aware, Be Empowered</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:#06183d;color:#fff;font-family:'Segoe UI',Roboto,Arial,sans-serif;overflow:hidden}
+#wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#box{position:relative;overflow:hidden;background:#000}
+#stage{width:1920px;height:1080px;position:absolute;left:0;top:0;transform-origin:0 0;background:linear-gradient(135deg,#0a3a8c,#1565c0 60%,#0b3f9a);overflow:hidden}
+#stage:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.07) 2px,transparent 2px);background-size:80px 80px;animation:grid 12s linear infinite}
+@keyframes grid{to{background-position:80px 80px}}
+#tri{position:absolute;left:0;right:0;top:0;height:18px;display:flex;z-index:4}#tri i{flex:1}
+.sc{position:absolute;inset:0;opacity:0;transform:translateX(60px);transition:opacity .7s,transform .7s;pointer-events:none}
+.sc.on{opacity:1;transform:none}
+h2{position:absolute;left:110px;top:70px;margin:0;font-size:66px;text-shadow:0 4px 20px #0006}
+h2 small{display:block;font-size:30px;color:#ffc27a;font-weight:400;margin-bottom:6px}
+.ch{position:absolute;left:120px;top:250px;width:440px;height:620px;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-16px)}}
+.blink{animation:bl 4s infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bl{95%,100%{transform:scaleY(.1)}}
+.card{position:absolute;left:720px;top:250px;width:1080px;min-height:290px;background:#fff;color:#0a2a6b;border-radius:36px;border-left:24px solid #ff9933;border-bottom:24px solid #138808;box-shadow:0 30px 80px #0008;padding:36px 46px;box-sizing:border-box;display:flex;align-items:center;gap:36px;transform:scale(.85);transition:transform .8s .3s}
+.on .card{transform:none}
+.card .e{font-size:120px}.card .t{font-size:46px;font-weight:600;line-height:1.25}
+.v{position:absolute;left:720px;top:590px;max-width:1080px;font-size:40px;font-weight:700;background:#ff9933;color:#2b1400;padding:14px 34px;border-radius:50px;opacity:0}
+.on .v{animation:pop .6s 1.6s forwards}
+@keyframes pop{0%{opacity:0;transform:scale(.5)}70%{transform:scale(1.08)}100%{opacity:1;transform:none}}
+.chips{position:absolute;left:720px;top:750px;display:flex;flex-wrap:wrap;gap:18px;width:1100px}
+.chip{font-size:32px;padding:12px 26px;border-radius:50px;background:#138808;box-shadow:0 8px 24px #0006;opacity:0}
+.chip:nth-child(2n){background:#fff;color:#0a2a6b}
+.on .chip{animation:pop .5s forwards}
+.ic{position:absolute;font-size:92px;animation:fl 4s ease-in-out infinite;filter:drop-shadow(0 8px 12px #0006)}
+.i1{left:1620px;top:100px}.i2{left:1400px;top:110px;animation-delay:-1s}.i3{left:640px;top:130px;animation-delay:-2s}
+@keyframes fl{50%{transform:translateY(-24px) rotate(6deg)}}
+#sub{position:absolute;left:160px;right:160px;bottom:50px;text-align:center;font-size:44px;line-height:1.3;background:#000b;border-radius:18px;padding:14px 30px;min-height:62px;z-index:5}
+#bar{position:absolute;left:0;bottom:0;height:12px;width:100%;background:#fff3;z-index:6;cursor:pointer}
+#fill{height:100%;width:0;background:#ff9933}
+#ctl{margin-top:10px;display:flex;gap:10px;align-items:center;font-size:16px}
+button{background:#138808;color:#fff;border:0;border-radius:8px;padding:8px 16px;font-size:16px;cursor:pointer}
+#start{position:absolute;inset:0;z-index:9;background:#06183de8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center}
+#start h1{font-size:72px;margin:0}#start p{font-size:32px;margin:0;color:#ffc27a}
+#start button{font-size:44px;padding:20px 60px;border-radius:60px;background:#ff9933;color:#2b1400}
+
+.quiz-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    padding: 14px 30px;
+
+    background: #2563EB;
+    color: white;
+
+    border: 2px solid #1E1B48;
+    border-radius: 12px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    box-shadow: 0 5px 15px rgba(34, 211, 238, 0.5);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.quiz-btn:hover {
+    background: #3B82F6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(34, 211, 238, 0.8);
+}
+</style></head><body>
+<div id="wrap"><div id="box"><div id="stage">
+<div id="tri"><i style="background:#ff9933"></i><i style="background:#fff"></i><i style="background:#138808"></i></div>
+<div id="start"><div style="font-size:120px">⚖️</div><h1>Consumer Rights in India</h1><p>Be Aware, Be Empowered · 2 min 50 s</p><button id="go">▶ Play</button></div>
+<div id="sub"></div><div id="bar"><div id="fill"></div></div></div></div>
+<div id="ctl"><button id="pp">Pause</button><button id="rs">Restart</button><button id="mu">Music: on</button><button id="vo">Voice: on</button><span id="tm">0:00 / 2:50</span></div></div>
+<script>
+const S=[
+{s:0,t:"Introduction",e:["📦","🛒","⚖️"],c:["Know your rights","Shop with confidence"],m:["📦","Ordered: headphones. Received: wrong, damaged item. What now?"],v:"Consumer Rights – Be Aware, Be Empowered.",n:"Aarav orders headphones online, but a wrong, damaged item arrives. Confused, he wonders what to do. The answer starts with knowing your consumer rights. Every buyer, in shops or online, deserves fair treatment."},
+{s:15,t:"Right to Safety",e:["🍱","🔌","🧴"],c:["Read labels","Look for quality marks","Avoid unsafe products"],m:["🏷️","Check safety labels on food, appliances and cosmetics"],v:"Right to Safety – Choose Safe Products.",n:"Before buying food, electrical appliances or cosmetics, check labels and quality information. Consumers have the right to be protected against goods and services that may be hazardous to life and property."},
+{s:32,t:"Right to Information",e:["🧾","🔍","📅"],c:["MRP","Expiry date","Ingredients","Warranty"],m:["🧾","MRP · Expiry · Ingredients · Quantity · Maker · Warranty"],v:"Right to Information – Know Before You Buy.",n:"Check the MRP, expiry date, ingredients, quantity, manufacturer details and warranty. You have the right to know the quality, quantity, purity, standard and price of goods and services, so you can decide wisely."},
+{s:49,t:"Right to Choose",e:["🛍️","💰","📱"],c:["Compare brands","Compare prices","Check features"],m:["⚖️","Brand A vs Brand B: compare price and features"],v:"Right to Choose – Make Your Own Decision.",n:"Compare brands, prices and features before you pay. Consumers should have access to a variety of goods and services at competitive prices, and be free to make informed choices without unfair restrictions."},
+{s:66,t:"Right to Be Heard",e:["🎧","📝","🏛️"],c:["Explain the problem clearly","Ask for a complaint record"],m:["🎧","“My product is defective.” — Complaint recorded ✔"],v:"Right to Be Heard – Your Voice Matters.",n:"Got a defective product? Contact customer support and explain the problem clearly. Ask that your complaint is recorded. Consumer interests deserve due consideration through consumer forums and grievance mechanisms."},
+{s:83,t:"Right to Seek Redressal",e:["🧾","📸","🔧"],c:["Receipt & invoice","Payment proof","Photos","Seller chats"],m:["🗂️","Invoice · Payment confirmation · Photos · Messages with seller"],v:"Right to Seek Redressal – Stand Up for Your Rights.",n:"Keep your receipt, invoice, payment confirmation, photos and messages with the seller. Depending on the case and the law, you can seek a refund, replacement, repair or other remedy for defective goods, deficient services or unfair trade practices."},
+{s:100,t:"Right to Consumer Awareness",e:["🎓","📢","💡"],c:["Fake discounts","Counterfeits","Hidden charges","Suspicious sellers"],m:["🎓","Campus session: spot misleading ads and fake discounts"],v:"Right to Consumer Awareness – Stay Informed.",n:"At a campus awareness session, students learn to spot misleading advertisements, fake discounts, counterfeit products, hidden charges and suspicious online sellers. Being informed helps you protect your rights and shop smartly."},
+{s:117,t:"Common Consumer Problems",e:["🚩","💳","📉"],c:["Check seller details","Read the terms","Compare prices","Keep invoices"],m:["🚩","Fake product · Hidden charges · Wrong bill · Ignored complaint"],v:"Think Before You Buy. Beware of Unfair Practices.",n:"Watch out for fake products, misleading ads, hidden charges, wrong bills and sellers ignoring genuine complaints. Check seller details, read the terms, compare prices, and keep invoices and payment records."},
+{s:134,t:"How to File a Complaint",e:["📞","💻","🏛️"],c:["1. Contact the seller","2. Keep records","3. Visit the helpline","Consumer Commissions"],m:["📞","National Consumer Helpline: 1915<br>consumerhelpline.gov.in"],v:"Keep Proof. Report Complaints. Seek Redressal.",sp:"First, contact the seller or service provider and keep records. Then visit the National Consumer Helpline website, or call one nine one five, for guidance. Depending on the issue and the law, Consumer Commissions may also be an option.",n:"First, contact the seller or service provider and keep records. Then visit the National Consumer Helpline website, or call 1915, for guidance. Depending on the issue and the law, Consumer Commissions may also be an option."},
+{s:151,t:"Conclusion",e:["🎓","🤝","✅"],c:["Check info","Compare options","Keep receipts"],m:["✅","I promise to make informed choices, check product information, keep purchase records, and speak up against unfair consumer practices."],v:"Be Aware. Be Informed. Be an Empowered Consumer.",n:"Aarav checks product details, compares options and keeps his receipt. Then he shares these tips with his classmates. Be aware, be informed, and be an empowered consumer."}
+];
+const TOTAL=170,st=document.getElementById('stage'),sub=document.getElementById('sub'),$=id=>document.getElementById(id);
+const chr=w=>`<svg class="ch" viewBox="0 0 300 420"><ellipse cx="150" cy="405" rx="90" ry="10" fill="#0004"/><path d="M60 410 Q60 250 150 240 Q240 250 240 410Z" fill="#ff9933"/><path d="M150 240 L150 410" stroke="#e57d00" stroke-width="4"/><path d="M118 244 L150 290 L182 244Z" fill="#fff"/><rect x="132" y="200" width="36" height="50" rx="14" fill="#c98a5e"/><circle cx="150" cy="150" r="70" fill="#d9a074"/><path d="M78 148 Q76 68 150 68 Q224 68 222 148 Q200 104 150 106 Q100 104 78 148Z" fill="#1c1410"/><g class="blink"><circle cx="122" cy="155" r="9" fill="#1c1410"/><circle cx="178" cy="155" r="9" fill="#1c1410"/></g><circle cx="150" cy="122" r="6" fill="#138808"/>${w?'<path d="M125 192 Q150 178 175 192" stroke="#7a3320" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M105 132 L135 138M195 132 L165 138" stroke="#1c1410" stroke-width="6" stroke-linecap="round"/>':'<path d="M120 182 Q150 212 180 182" stroke="#7a3320" stroke-width="7" fill="none" stroke-linecap="round"/>'}</svg>`;
+S.forEach((x,i)=>{st.insertAdjacentHTML('afterbegin',`<section class="sc" id="s${i}"><h2><small>Scene ${i+1} of 10</small>${x.t}</h2>${chr([0,4,7].includes(i))}<div class="card"><div class="e">${x.m[0]}</div><div class="t" ${i==9?'style="font-size:38px"':''}>${x.m[1]}</div></div><div class="v">${x.v}</div><div class="chips">${x.c.map((c,j)=>`<div class="chip" style="animation-delay:${2.2+j*.7}s">${c}</div>`).join('')}</div>${x.e.map((e,j)=>`<div class="ic i${j+1}">${e}</div>`).join('')}</section>`);x.sen=x.n.match(/[^.!?]+[.!?]/g)||[x.n];x.end_=i<9?S[i+1].s:TOTAL});
+const box=$('box');function fit(){const k=Math.min(innerWidth/1920,(innerHeight-60)/1080);box.style.width=1920*k+'px';box.style.height=1080*k+'px';st.style.transform=`scale(${k})`}
+addEventListener('resize',fit);fit();
+let t=0,play=false,cur=-1,last=0,ac,mus=true,voice=true,ci=0;const fill=$('fill'),tm=$('tm'),pp=$('pp');
+function speak(x){speechSynthesis.cancel();if(!voice)return;const u=new SpeechSynthesisUtterance(x.sp||x.n),v=speechSynthesis.getVoices();u.voice=v.find(a=>a.lang=='en-IN')||v.find(a=>a.lang.startsWith('en'))||null;u.lang='en-IN';u.rate=1.02;speechSynthesis.speak(u)}
+function chord(){if(!ac||!mus||!play)return;const C=[[196,246.9,293.7],[261.6,329.6,392],[220,261.6,329.6],[174.6,220,261.6]][ci++%4],n=ac.currentTime;C.forEach(f=>{const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(.025,n+1.5);g.gain.linearRampToValueAtTime(0,n+4.2);o.connect(g).connect(ac.destination);o.start(n);o.stop(n+4.3)})}
+function show(i){cur=i;document.querySelectorAll('.sc').forEach((e,j)=>e.classList.toggle('on',j==i));speak(S[i])}
+const f=n=>Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0');
+function tick(now){const dt=(now-last)/1000;last=now;if(play){t+=dt;if(t>=TOTAL){t=TOTAL-.01;play=false;pp.textContent='Replay'}}
+ if(started){let i=0;S.forEach((x,j)=>{if(t>=x.s)i=j});if(i!=cur)show(i);const x=S[cur],p=(t-x.s)/(x.end_-x.s),tot=x.n.length;let a=0,k=0;x.sen.forEach((s,j)=>{if(p*tot>=a)k=j;a+=s.length});sub.textContent=x.sen[k].trim();fill.style.width=t/TOTAL*100+'%';tm.textContent=f(t)+' / 2:50'}
+ requestAnimationFrame(tick)}
+let started=false;
+$('go').onclick=()=>{$('start').style.display='none';started=true;t=0;cur=-1;ac=new (window.AudioContext||window.webkitAudioContext)();ac.resume();play=true;last=performance.now();chord()};
+pp.onclick=()=>{if(t>=TOTAL-.05){t=0;cur=-1;play=true}else if(play){play=false;speechSynthesis.pause()}else{play=true;speechSynthesis.resume()}pp.textContent=play?'Pause':'Play'};
+$('rs').onclick=()=>{t=0;cur=-1;play=true;pp.textContent='Pause';speechSynthesis.cancel()};
+$('mu').onclick=e=>{mus=!mus;e.target.textContent='Music: '+(mus?'on':'off')};
+$('vo').onclick=e=>{voice=!voice;e.target.textContent='Voice: '+(voice?'on':'off');if(!voice)speechSynthesis.cancel();else if(cur>=0)speak(S[cur])};
+$('bar').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();t=(e.clientX-r.left)/r.width*TOTAL;cur=-1};
+setInterval(chord,4000);requestAnimationFrame(t0=>{last=t0;tick(t0)});
+</script>
+<a href="consumerRights.html"><button class="quiz-btn">Quiz</button></a>
+</body></html>
