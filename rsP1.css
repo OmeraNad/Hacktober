@@ -76,7 +76,8 @@ p {
 /* Wrapper for option buttons */
 .options { 
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
     gap: 1rem;
     margin: 2rem;
 }
@@ -84,6 +85,7 @@ p {
 
 /* Interactive Choice Buttons */
 .A { 
+    width: 100%;
     background: #1b2531; 
     color: #e2e8f0;
     padding: 1rem 2rem; 
