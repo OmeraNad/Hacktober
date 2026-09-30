@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Fundamental Rights and Student Rights: Know Your Rights, Know Your Power</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{margin:0;background:#0a1224;font-family:system-ui,Segoe UI,Arial,sans-serif;color:#fff}
+#wrap{position:relative;width:100%;max-width:1280px;margin:0 auto;overflow:hidden;background:#000}
+#st{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:linear-gradient(#e8f1ff,#fff8ee);color:#0b2a5b}
+#art{position:absolute;inset:0}
+#bar{position:absolute;top:0;left:0;right:0;height:18px;background:linear-gradient(90deg,#ff9933 33%,#fff 33% 66%,#138808 66%)}
+#ttl{position:absolute;left:70px;top:60px;max-width:1100px;background:#0b3d91;color:#fff;padding:26px 40px;border-radius:24px;border-left:16px solid #ff9933;font-size:54px;font-weight:800;line-height:1.15;animation:sl .8s both}
+#chip{position:absolute;right:70px;top:70px;background:#138808;color:#fff;padding:16px 34px;border-radius:40px;font-size:38px;font-weight:700;animation:pop .8s .3s both}
+#sub{position:absolute;left:120px;right:120px;bottom:50px;background:rgba(6,20,50,.86);color:#fff;text-align:center;padding:22px 40px;border-radius:20px;font-size:44px;line-height:1.3;min-height:60px}
+#end{position:absolute;inset:0;background:linear-gradient(135deg,#0b3d91,#0b2a5b);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:fade 1s both}
+#end h1{font-size:96px;margin:10px;color:#fff}#end h2{font-size:52px;margin:10px;color:#ff9933}#end p{font-size:40px;color:#9fe0a0;margin:10px}
+.pop{animation:pop .7s both}.bob{animation:bob 2.4s ease-in-out infinite}.in{animation:sl .9s both}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+@keyframes sl{from{opacity:0;transform:translateX(-80px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes bob{50%{transform:translateY(-14px)}}
+svg *{transform-box:fill-box;transform-origin:center}
+#ctl{display:flex;gap:10px;align-items:center;max-width:1280px;margin:8px auto;padding:0 10px;font-size:15px}
+#ctl button{background:#ff9933;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+#sk{flex:1}
+#note{max-width:1280px;margin:0 auto 12px;padding:0 10px;font-size:13px;opacity:.75}
+
+.quiz-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    padding: 14px 30px;
+
+    background: #2563EB;
+    color: white;
+
+    border: 2px solid #1E1B48;
+    border-radius: 12px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    box-shadow: 0 5px 15px rgba(34, 211, 238, 0.5);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.quiz-btn:hover {
+    background: #3B82F6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(34, 211, 238, 0.8);
+}
+</style></head><body>
+<div id="wrap"><div id="st"><svg id="art" viewBox="0 0 1920 1080"></svg><div id="bar"></div><div id="ttl"></div><div id="chip"></div><div id="sub"></div>
+<div id="end"><div style="font-size:120px">⚖️🇮🇳📜</div><h1>FUNDAMENTAL RIGHTS AWARENESS</h1><h2>Know Your Rights. Respect Every Right. Build a Better India.</h2><p>Student Project • Constitution of India, Part III</p></div></div></div>
+<div id="ctl"><button id="pl">▶ Play</button><button id="mu">🔊 Voice+Music</button><input id="sk" type="range" min="0" max="170" step="0.1" value="0"><span id="tm">0:00 / 2:50</span></div>
+<div id="note">Tap Play (audio needs a click). Narration uses your browser's English (India) voice if installed. Verify article text at indiacode.nic.in before submitting.</div>
+<script>
+const S=[
+[0,15,'Fundamental Rights – Know Your Rights, Know Your Power','Part III',['📖','🇮🇳','📜'],4,"Meet Asha, a college student. Between classes, she reads the Constitution of India and discovers Fundamental Rights, guaranteed in Part III. Know your rights, know your power."],
+[15,32,'Article 14 – Equality Before the Law','Articles 14, 15, 16',['⚖️','🏏','🎓'],5,"Article 14 says the State shall not deny anyone equality before the law. Article 15 prohibits discrimination on grounds like religion, race, caste, sex or place of birth. Article 16 promises equal opportunity in public employment."],
+[32,49,'Freedom of Expression. Dignity. Personal Liberty.','Articles 19, 21',['✍️','📰','🕊️'],5,"Article 19 protects freedoms like speech, peaceful assembly and forming associations, subject to reasonable restrictions the Constitution permits. Article 21 protects life and personal liberty, which courts have read to include dignity."],
+[49,66,'Articles 23–24 – Protection Against Exploitation','Articles 23, 24',['🚫','⛓️','🧒'],4,"Article 23 prohibits human trafficking and forced labour. Article 24 bars employing children below fourteen in factories, mines or other hazardous work. At an awareness session, students learn to spot exploitation and report it."],
+[66,83,'Freedom of Conscience and Religion','Articles 25–28',['🕉️','☪️','✝️','🪯'],5,"Articles 25 to 28 protect freedom of conscience and the right to profess, practise and propagate religion, subject to public order, morality and health. Asha's friends celebrate festivals together, with respect."],
+[83,100,'Protect Culture. Celebrate Diversity.','Articles 29, 30',['🗣️','💃','🎭'],5,"Article 29 protects any section of citizens' distinct language, script or culture. Article 30 lets religious and linguistic minorities establish and run educational institutions of their choice. Students learn languages and celebrate diversity."],
+[100,117,'Article 32 – Protect Your Fundamental Rights','Articles 32, 226',['🏛️','📚','🧑‍⚖️'],3,"Article 32 lets you approach the Supreme Court directly to enforce Fundamental Rights. Article 226 empowers High Courts to issue writs, including for other purposes. A legal aid professional can guide you."],
+[117,134,'Respect Others. Know Your Rights. Speak Up.','Rights vs rules',['📚','🗨️','🛡️'],5,"Not every campus rule is a Fundamental Right. Many entitlements come from laws, regulations and institutional policies. Expect fair treatment, use grievance mechanisms, report bullying and harassment, and follow reasonable rules."],
+[134,151,'Document. Report. Seek Support.','Getting help',['📝','🏫','🤝'],3,"If something goes wrong, document what happened: dates, messages, witnesses. Then report it through the college grievance cell or a trusted faculty member. Legal services authorities can also offer support. Follow the proper procedure."],
+[151,170,'Know Your Rights. Respect Every Right. Build a Better India.','I promise',['🇮🇳','⚖️','🏛️'],5,"Rights come with responsibility. Asha and her friends promise to respect the rights of others, understand their own, act responsibly, and help build a fair and inclusive society. Know your rights. Respect every right. Build a better India."]];
+const PROMISE="I promise to respect the rights of others, understand my Fundamental Rights, act responsibly, and help build a fair and inclusive society.";
+const SK=['#c68642','#8d5524','#f1c27d','#a86b3c','#e0ac69'],SH=['#ff9933','#138808','#ffffff','#0b3d91'],BG=['#dbeafe','#fff1de','#e2f6e4'];
+const $=id=>document.getElementById(id);let t=0,play=false,cur=-1,mute=false,last=0,ac,osc=[];
+function person(x,k,i){const lead=k==0,sk=lead?'#c68642':SK[(k+i)%5],sh=lead?'#0b3d91':SH[(k+i)%4],d=(k*.3)+'s';
+return `<g class="bob" style="animation-delay:${d}"><g class="in" style="animation-delay:${d}"><rect x="${x-55}" y="640" width="110" height="200" rx="45" fill="${sh}" stroke="#0b2a5b" stroke-width="4"/>${lead||k%2?`<rect x="${x-52}" y="520" width="104" height="120" rx="45" fill="#1b1b2f"/>`:''}<circle cx="${x}" cy="590" r="52" fill="${sk}"/><path d="M${x-54} 580a54 54 0 0 1 108 0q-54-40-108 0z" fill="#1b1b2f"/><circle cx="${x-18}" cy="595" r="6" fill="#222"/><circle cx="${x+18}" cy="595" r="6" fill="#222"/><path d="M${x-16} 615q16 14 32 0" stroke="#7a2e2e" stroke-width="5" fill="none"/></g></g>`}
+function render(i){const s=S[i];let o=`<rect width="1920" height="1080" fill="${BG[i%3]}"/><rect x="200" y="260" width="1520" height="300" rx="20" fill="#fff" opacity=".8"/><rect y="840" width="1920" height="240" fill="#0b3d91" opacity=".9"/><rect y="840" width="1920" height="14" fill="#ff9933"/>`;
+s[4].forEach((e,k)=>{const x=(1920-(s[4].length-1)*300)/2+k*300;o+=`<text class="pop" style="animation-delay:${.4+k*.25}s" x="${x}" y="470" font-size="170" text-anchor="middle">${e}</text>`});
+for(let k=0;k<s[5];k++)o+=person(s[5]>1?420+k*(1080/(s[5]-1)):960,k,i);
+$('art').innerHTML=o;const T=$('ttl');T.textContent=s[2];T.style.animation='none';T.offsetWidth;T.style.animation='';const C=$('chip');C.textContent=s[3];C.style.animation='none';C.offsetWidth;C.style.animation='';
+$('ttl').style.fontSize=s[2].length>45?'44px':'54px'}
+function say(i){speechSynthesis.cancel();if(mute||!play)return;const s=S[i],u=new SpeechSynthesisUtterance(s[6]),v=speechSynthesis.getVoices().find(v=>/en[-_]IN/i.test(v.lang))||speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang));if(v)u.voice=v;u.lang='en-IN';const w=s[6].split(' ').length;u.rate=Math.min(1.3,Math.max(.9,w/((s[1]-s[0]-.6)*2.5)));speechSynthesis.speak(u)}
+function music(i){if(!ac)return;const ch=[[220,277,330],[196,247,294],[174,220,262],[233,294,349]][i%4];osc.forEach((o,k)=>o.frequency.setTargetAtTime(ch[k],ac.currentTime,.8))}
+function startAudio(){if(ac)return;ac=new (window.AudioContext||window.webkitAudioContext)();const g=ac.createGain();g.gain.value=mute?0:.035;g.connect(ac.destination);window.mg=g;[220,277,330].forEach(f=>{const o=ac.createOscillator();o.type='sine';o.frequency.value=f;o.connect(g);o.start();osc.push(o)})}
+function scene(i){cur=i;render(i);say(i);music(i)}
+function sync(){const i=S.findIndex(s=>t>=s[0]&&t<s[1]);const n=i<0?9:i;if(n!==cur)scene(n);const s=S[n],sn=s[6].match(/[^.!?]+[.!?]+/g).map(x=>x.trim());let ratio=(t-s[0])/(s[1]-s[0]),L=sn.map(x=>x.length),tot=L.reduce((a,b)=>a+b),c=0,idx=0;for(;idx<sn.length-1;idx++){c+=L[idx]/tot;if(ratio<c)break}
+let sub=sn[idx];if(n==9&&t>=159&&t<165)sub='“'+PROMISE+'”';$('sub').textContent=sub;$('sub').style.display=t>=165?'none':'block';$('end').style.display=t>=165?'flex':'none';$('ttl').style.display=t>=165?'none':'block';$('chip').style.display=t>=165?'none':'block';
+$('sk').value=t;const f=x=>Math.floor(x/60)+':'+String(Math.floor(x%60)).padStart(2,'0');$('tm').textContent=f(t)+' / 2:50'}
+function loop(ts){const d=(ts-last)/1000;last=ts;if(play){t+=d;if(t>=170){t=170;play=false;$('pl').textContent='↺ Replay';speechSynthesis.cancel()}sync()}requestAnimationFrame(loop)}
+$('pl').onclick=()=>{if(t>=170){t=0;cur=-1}play=!play;$('pl').textContent=play?'❚❚ Pause':'▶ Play';if(play){startAudio();ac.resume();cur=-1;sync()}else speechSynthesis.cancel()};
+$('mu').onclick=()=>{mute=!mute;$('mu').textContent=mute?'🔇 Muted':'🔊 Voice+Music';if(window.mg)mg.gain.value=mute?0:.035;mute?speechSynthesis.cancel():say(cur)};
+$('sk').oninput=e=>{t=+e.target.value;cur=-1;speechSynthesis.cancel();sync()};
+function fit(){const w=$('wrap').clientWidth;$('st').style.transform=`scale(${w/1920})`;$('wrap').style.height=w*9/16+'px'}
+addEventListener('resize',fit);fit();speechSynthesis.getVoices();sync();requestAnimationFrame(loop);
+</script>
+<a href="FundamentalRights.html"><button class="quiz-btn">Quiz</button></a>
+</body></html>

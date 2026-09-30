@@ -1,0 +1,149 @@
+@import url('https://googleapis.com');
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body { 
+    min-height: 100vh; 
+    font-family: 'Roboto', sans-serif; 
+    /* Deep institutional midnight-blue gradient to match the new theme */
+    background: 
+        linear-gradient(rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.98)),
+        radial-gradient(circle, #111827, #030712); 
+    color: #f9fafb; 
+    line-height: 1.6;
+}
+
+h1 { 
+    font-size: 3rem; 
+    font-family: 'IBM Plex Serif', serif; 
+    font-weight: 700;
+    margin: 2rem; 
+    color: #10b981; /* Swapped to the new menu's Mint Green */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+}
+
+p { 
+    font-family: 'Roboto', sans-serif; 
+    font-size: 1.25rem; 
+    font-weight: 300;
+}
+
+/* Base style for case files / text containers */
+.question { 
+    margin: 2rem; 
+    padding: 1.5rem; 
+    border-left: 5px solid #10b981; /* Accent line in Mint Green */
+    border-radius: 4px; 
+    background: #1f2937; /* Dark slate text backing */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    animation: fadeInSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+/* Clues styled like clean scholarly case documents */
+.clues1, .clues2, .clues3 { 
+    margin: 1rem 2rem; 
+    padding: 1rem 1.5rem; 
+    border: 1px solid #374151; 
+    border-radius: 6px; 
+    background: #1f2937; 
+    display: inline-block; 
+    font-family: 'Courier Prime', monospace;
+    color: #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    animation: fadeInSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.clues1 { animation-delay: 0.4s; }
+.clues2 { animation-delay: 0.8s; }
+.clues3 { animation-delay: 1.2s; }
+
+/* REWORKED: Option box featuring a crisp mint border and soft tech container */
+.option {
+    background: rgba(16, 185, 129, 0.02); /* Very subtle mint tint overlay */
+    border: 2px dashed #10b981; /* Clean mint-green dashed border line */
+    border-radius: 8px;
+    margin: 2rem;
+    padding: 1.5rem;
+    box-shadow: 
+        0 10px 30px -10px rgba(16, 185, 129, 0.1),
+        inset 0 0 15px rgba(16, 185, 129, 0.03);
+    animation: fadeInSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: 1.4s;
+}
+
+/* Wrapper for option buttons */
+.options { 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0 0 0;
+}
+
+/* Interactive Choice Buttons */
+.A { 
+    background: #1f2937; 
+    color: #f9fafb;
+    padding: 1rem 2rem; 
+    border: 1px solid #4b5563; 
+    border-radius: 4px; 
+    font-size: 1.1rem; 
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeInSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) 2.0s backwards;
+}
+
+/* Hover state transitions to the active Academic Blue */
+.A:hover { 
+    background: #3b82f6; /* Changes to Scholar Blue on selection */
+    color: #ffffff; 
+    border-color: #60a5fa;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Cleaned up scale animation for a smoother presentation */
+@keyframes fadeInSlide { 
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+}
+
+/* Next button matches the new layout color scheme */
+.next {
+    font-size: 1.1rem;
+    font-family: 'Tektur', sans-serif;
+    padding: 1rem 2.5rem;
+    background: #1f2937; 
+    color: #10b981; /* Mint Green matching theme text */
+    border: 1px solid #10b981;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block; 
+    margin-left: auto;
+    margin-right: 2rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.next:hover {
+    background: #3b82f6; /* Swaps to Academic Blue on hover */
+    color: #ffffff;
+    border-color: #60a5fa;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
+}
