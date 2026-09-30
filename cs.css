@@ -7,97 +7,126 @@
 }
 
 body {
-    /* Trustworthy corporate-blue radial gradient */
-    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-    align-items: center; 
+    /* Deep gritty midnight blue with a subtle crime-scene grid effect */
+    background: 
+        linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98)),
+        radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+    background-size: cover;
+    align-items: center;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     overflow-x: hidden;
-    color: #f8fafc;
+    color: #e2e8f0;
     font-family: 'Outfit', sans-serif;
 }
 
 .game-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 800px;
-    padding: 3rem 2rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 650px;
+    width: 90%;
+    padding: 3.5rem 2.5rem;
+    /* Frosted glass tactical terminal style */
+    background: rgba(30, 41, 59, 0.4);
+    border: 2px solid #334155;
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0px rgba(255, 255, 255, 0.1);
+}
+
+/* Detective Case File Indicator */
+.case-badge {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ef4444; /* Alert red */
+    background: rgba(239, 68, 68, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    border: 1px dashed rgba(239, 68, 68, 0.3);
+    margin-bottom: 1.5rem;
 }
 
 h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-size: 3rem;
+    font-weight: 700;
     text-align: center;
     margin: 0 0 1rem 0;
     cursor: default;
-    color: #f59e0b; /* Elegant gold/amber tone for justice and rights */
-    letter-spacing: 1px;
-    text-shadow: 0 2px 10px rgba(245, 158, 11, 0.15);
+    color: #f59e0b; /* Cyberspace terminal blue */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
 h3 {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
+    font-family: 'Courier Prime', monospace;
+    font-weight: 400;
     text-align: center;
-    color: #cbd5e1; /* Soft slate silver text */
-    font-size: 1.3rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 3rem;
+    color: #38bdf8; /* Muted evidence folder grey */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 3.5rem;
+    max-width: 85%;
 }
 
 .button-wrapper {
     display: flex;
-    gap: 1.5rem; 
+    gap: 1.5rem;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.b1-link {
+    display: inline-block;
 }
 
 /* Unified clean button structure */
 .b1, .b2 {
     font-family: 'Outfit', sans-serif;
     padding: 1rem 2.5rem;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     white-space: nowrap;
     letter-spacing: 0.5px;
-    transition: all 0.25s ease-in-out;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Primary Action: Start Game */
+/* Primary Action: Begin Investigation (Warning Warning Yellow Tint) */
 .b1 {
-    background: #f59e0b; /* Gold theme */
-    color: #0f172a;
+    background: #f59e0b; /* Caution amber/yellow */
+    color: #020617;
     border: 1px solid #d97706;
-    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25);
 }
 
 .b1:hover {
     background: #fbbf24;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+    box-shadow: 0 6px 25px rgba(245, 158, 11, 0.4);
 }
 
-/* Secondary Action: Go Back */
+/* Secondary Action: Abort Case */
 .b2 {
     background: transparent;
-    color: #94a3b8;
-    border: 1px solid #334155;
+    color: #64748b;
+    border: 1px solid #1e293b;
 }
 
 .b2:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: #f8fafc;
-    border-color: #64748b;
+    background: rgba(239, 68, 68, 0.05);
+    color: #f87171; /* Fades to warning red on hover */
+    border-color: rgba(239, 68, 68, 0.3);
     transform: translateY(-2px);
 }
 
@@ -109,31 +138,31 @@ h3 {
 /* Responsive Scaling for Mobile Screens */
 @media (max-width: 768px) {
     .game-container {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem;
         margin: 1rem;
-        border-radius: 12px;
     }
-
+    
     h1 {
-        font-size: 2.5rem; 
-        margin-bottom: 0.75rem;
+        font-size: 2.2rem;
     }
-
+    
     h3 {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+        max-width: 100%;
     }
-
+    
     .button-wrapper {
-        flex-direction: column-reverse; /* Puts the primary "Start" button on top on mobile */
+        flex-direction: column-reverse; /* Keeps primary button on top for mobile layouts */
         gap: 1rem;
+    }
+    
+    .b1-link, .b1, .b2 {
         width: 100%;
     }
-
+    
     .b1, .b2 {
-        width: 100%; 
         text-align: center;
         padding: 1rem;
-        font-size: 1.1rem;
     }
 }

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LawLink - Categories</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #172554, #312e81);
+            color: white;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 70px;
+            padding: 0 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #a78bfa;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-right a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-right a:hover {
+            color: #c4b5fd;
+        }
+
+        .profile {
+            background: #7c3aed;
+            padding: 9px 15px;
+            border-radius: 20px;
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 25px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .welcome h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .welcome h1 span {
+            color: #c4b5fd;
+        }
+
+        .welcome p {
+            color: #cbd5e1;
+            font-size: 17px;
+        }
+
+        /* PROGRESS */
+        .progress-box {
+            max-width: 700px;
+            margin: 0 auto 45px;
+            background: rgba(255,255,255,0.08);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #334155;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+            border-radius: 10px;
+        }
+
+        /* CATEGORY GRID */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            position: relative;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 22px;
+            padding: 28px;
+            min-height: 270px;
+            transition: 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.13);
+            border-color: #8b5cf6;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .emoji {
+            width: 65px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(139,92,246,0.2);
+            border-radius: 18px;
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .learn-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #7c3aed;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .learn-btn:hover {
+            background: #8b5cf6;
+        }
+
+        /* COMPLETED */
+        .completed {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #065f46;
+            color: #a7f3d0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 35px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-right a {
+                display: none;
+            }
+
+            .container {
+                padding: 35px 18px;
+            }
+
+            .welcome h1 {
+                font-size: 30px;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            ⚖️ Law<span>Link</span>
+        </div>
+
+        <div class="nav-right">
+            <a href="#">🏠 Dashboard</a>
+            <a href="#">🏆 My Progress</a>
+            <a href="#" class="profile">👤 Jessica</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <section class="welcome">
+
+            <h1>
+                Know Your Rights. <span>Play. Learn. Protect.</span>
+            </h1>
+
+            <p>
+                Choose a category and start your legal awareness journey.
+            </p>
+
+        </section>
+
+
+        <!-- PROGRESS -->
+        <div class="progress-box">
+
+            <div class="progress-top">
+                <span>📚 Your Learning Progress</span>
+                <span>0 / 6 Completed</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+        <section class="categories">
+
+
+            <!-- 1 CYBERCRIME -->
+            <div class="card">
+
+                <div class="emoji">
+                    🛡️
+                </div>
+
+                <h2>
+                    Cybercrime & Digital Privacy
+                </h2>
+
+                <p>
+                    Learn how to protect yourself from online scams,
+                    identity theft, privacy violations and cyber threats.
+                </p>
+
+                <a href="CyberCrime.html"><button class="learn-btn"
+                        onclick="openCategory('cybercrime')">
+                    Start Learning →
+                </button>
+                </a>
+
+            </div>
+
+
+            <!-- 2 CONSUMER -->
+            <div class="card">
+
+                <div class="emoji">
+                    🛒
+                </div>
+
+                <h2>
+                    Consumer Rights
+                </h2>
+
+                <p>
+                    Understand your rights when buying products,
+                    using services or shopping online.
+                </p>
+
+                <button class="learn-btn"
+                        onclick="openCategory('consumer')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <!-- 3 ROAD SAFETY -->
+            <div class="card">
+
+                <div class="emoji">
+                    🚦
+                </div>
+
+                <h2>
+                    Road Safety
+                </h2>
+
+                <p>
+                    Learn important traffic rules, road safety practices
+                    and your responsibilities as a road user.
+                </p>
+
+                <button class="learn-btn"
+                        onclick="openCategory('road')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <!-- 4 FUNDAMENTAL RIGHTS -->
+            <div class="card">
+
+                <div class="emoji">
+                    🇮🇳
+                </div>
+
+                <h2>
+                    Fundamental & Student Rights
+                </h2>
+
+                <p>
+                    Discover your constitutional rights and understand
+                    the rights and grievance mechanisms available to students.
+                </p>
+
+                <button class="learn-btn"
+                        onclick="openCategory('fundamental')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <!-- 5 WORKPLACE -->
+            <div class="card">
+
+                <div class="emoji">
+                    💼
+                </div>
+
+                <h2>
+                    Workplace Rights & Safety
+                </h2>
+
+                <p>
+                    Understand workplace safety, harassment prevention,
+                    complaints and employee protections.
+                </p>
+
+                <button class="learn-btn"
+                        onclick="openCategory('workplace')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <!-- 6 WOMEN SAFETY -->
+            <div class="card">
+
+                <div class="emoji">
+                    👩‍⚖️
+                </div>
+
+                <h2>
+                    Women's Safety
+                </h2>
+
+                <p>
+                    Learn about stalking, harassment, domestic violence
+                    and important protections available to women.
+                </p>
+
+                <button class="learn-btn"
+                        onclick="openCategory('women')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        ⚖️ LawLink © 2026
+        <br><br>
+        Learn your rights. Know what to do.
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function openCategory(category) {
+
+            /*
+             * Later you can connect each category
+             * to its own learning page.
+             */
+
+            if (category === "cybercrime") {
+                window.location.href = "cybercrime.html";
+            }
+
+            else if (category === "consumer") {
+                window.location.href = "consumer.html";
+            }
+
+            else if (category === "road") {
+                window.location.href = "road.html";
+            }
+
+            else if (category === "fundamental") {
+                window.location.href = "fundamental.html";
+            }
+
+            else if (category === "workplace") {
+                window.location.href = "workplace.html";
+            }
+
+            else if (category === "women") {
+                window.location.href = "women.html";
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
