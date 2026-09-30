@@ -80,6 +80,7 @@
         const result = details && progress[topic];
         const completed = Boolean(result?.completed && Object.keys(result.answers || {}).length === 5);
         const badgeEarned = completed && Number(result.score) === 500;
+        const badgeWasEarnedBeforeAttempt = Boolean(result?.badgeEarnedBeforeAttempt);
 
         if (playerName) document.getElementById("player-name").textContent = playerName;
         if (details) document.getElementById("topic-name").textContent = details.title;
@@ -88,16 +89,22 @@
             document.getElementById("score").textContent = result.score;
             document.getElementById("correct-count").textContent = answers.filter((answer) => answer.correct).length;
             document.getElementById("wrong-count").textContent = answers.filter((answer) => !answer.correct).length;
-            document.getElementById("badge-name").textContent = details.badge;
-            if (!badgeEarned) {
-                document.getElementById("badge-panel").classList.add("pending");
-                document.getElementById("badge-status").textContent = `You need ${500 - Number(result.score)} more points to earn this badge.`;
+            if (badgeWasEarnedBeforeAttempt) {
+                document.getElementById("badge-panel").hidden = true;
+            } else {
+                document.getElementById("badge-name").textContent = details.badge;
+                if (!badgeEarned) {
+                    document.getElementById("badge-panel").classList.add("pending");
+                    document.getElementById("badge-status").textContent = `You need ${500 - Number(result.score)} more points to earn this badge.`;
+                }
             }
         } else {
             document.getElementById("badge-panel").hidden = true;
             document.getElementById("topic-name").textContent = "No completed quiz results were found.";
         }
-        if (badgeEarned) document.getElementById("badge-status").textContent = "Badge earned";
+        if (badgeEarned && !badgeWasEarnedBeforeAttempt) {
+            document.getElementById("badge-status").textContent = "Badge earned";
+        }
     </script>
 </body>
 </html>

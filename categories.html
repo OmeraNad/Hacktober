@@ -477,7 +477,9 @@
         const topicProgress = JSON.parse(localStorage.getItem('lawlinkQuizProgress') || '{}');
         const completedTopics = Object.values(topicProgress).filter((topic) => topic.completed).length;
         const earnedBadges = Object.values(topicProgress).filter((topic) =>
-            topic.completed && Number(topic.score) === 500 && Object.keys(topic.answers || {}).length === 5
+            topic.badgeEarned || (
+                topic.completed && Number(topic.score) === 500 && Object.keys(topic.answers || {}).length === 5
+            )
         ).length;
         document.getElementById('completed-count').textContent = `${completedTopics} / 6 Topics Completed`;
         document.getElementById('learning-progress').style.width = `${completedTopics / 6 * 100}%`;

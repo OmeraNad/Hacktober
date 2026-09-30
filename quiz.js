@@ -35,8 +35,18 @@
 
     function startTopic(topic) {
         const progress = readProgress();
-        const wasCompleted = Boolean(progress[topic]?.completed);
-        progress[topic] = { score: 0, answers: {}, completed: wasCompleted };
+        const previous = progress[topic] || {};
+        const previousAnswers = previous.answers || {};
+        const badgeWasEarned = Boolean(previous.badgeEarned || (
+            previous.completed && Number(previous.score) === 500 && Object.keys(previousAnswers).length === 5
+        ));
+        progress[topic] = {
+            score: 0,
+            answers: {},
+            completed: Boolean(previous.completed),
+            badgeEarned: badgeWasEarned,
+            badgeEarnedBeforeAttempt: badgeWasEarned
+        };
         writeProgress(progress);
     }
 
@@ -73,7 +83,7 @@
         feedback.id = "quiz-feedback";
         feedback.setAttribute("role", "status");
         feedback.setAttribute("aria-live", "polite");
-        feedback.style.cssText = "margin: 16px auto; max-width: 760px; font: 600 1rem/1.5 Arial, sans-serif; color: #123; text-align: center;";
+        feedback.style.cssText = "margin: 16px auto; max-width: 760px; padding: 14px 18px; border: 1px solid #facc15; border-radius: 4px; background: #1e293b; color: #f8fafc; font: 600 1rem/1.5 Arial, sans-serif; text-align: center;";
         options.insertAdjacentElement("afterend", feedback);
     }
 
@@ -106,7 +116,10 @@
             const { progress, state } = currentTopicProgress();
             if (state.answers[questionNumber]) return;
 
-            const correct = /alert\s*\(\s*['"]YAY/i.test(answerButton.getAttribute("onclick") || "");
+            const alertMatch = (answerButton.getAttribute("onclick") || "")
+                .match(/\balert\s*\(\s*(['"])(.*?)\1\s*\)/i);
+            const correct = Boolean(alertMatch);
+            const correctMessage = alertMatch?.[2].trim();
             const points = correct ? 100 : -25;
             state.score += points;
             state.answers[questionNumber] = { correct, points };
@@ -114,7 +127,7 @@
 
             answerButtons.forEach((button) => { button.disabled = true; });
             feedback.textContent = correct
-                ? `Correct! +100 points. Topic score: ${state.score}.`
+                ? correctMessage || `Correct! +100 points. Topic score: ${state.score}.`
                 : `Incorrect. -25 points. Topic score: ${state.score}.`;
             return;
         }
@@ -134,6 +147,7 @@
             event.preventDefault();
             event.stopImmediatePropagation();
             state.completed = true;
+            if (Number(state.score) === 500) state.badgeEarned = true;
             writeProgress(progress);
             window.location.href = `results.html?topic=${encodeURIComponent(topic)}`;
         }
