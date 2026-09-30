@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results - LawLink</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 24px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #0f172a, #172554, #312e81);
+            color: #f8fafc;
+            font-family: Arial, sans-serif;
+        }
+        main {
+            width: min(100%, 560px);
+            padding: 38px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+        }
+        .eyebrow { color: #a5f3fc; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+        h1 { margin: 12px 0 8px; font-size: clamp(1.8rem, 7vw, 2.6rem); }
+        #player-name { color: #c4b5fd; }
+        #topic-name { margin: 0; color: #cbd5e1; font-size: 1.1rem; }
+        .score { margin: 30px 0 24px; padding: 20px; background: rgba(255, 255, 255, 0.08); border-radius: 8px; }
+        .score strong { display: block; color: #67e8f9; font-size: 3rem; }
+        .score span { color: #cbd5e1; }
+        .details { display: flex; justify-content: center; gap: 28px; margin-bottom: 28px; color: #e2e8f0; }
+        .badge { margin: 0 auto 30px; padding: 16px; border: 1px solid #facc15; border-radius: 8px; background: rgba(250, 204, 21, 0.1); }
+        .badge.pending { border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.06); }
+        .badge strong { display: block; margin-top: 5px; color: #fde68a; font-size: 1.15rem; }
+        .badge.pending strong { color: #cbd5e1; }
+        .back {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 6px;
+            background: #06b6d4;
+            color: #082f49;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .back:hover { background: #67e8f9; }
+        @media (max-width: 420px) { main { padding: 26px 18px; } .details { gap: 14px; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="eyebrow">Topic complete</p>
+        <h1>Well done, <span id="player-name">Investigator</span></h1>
+        <p id="topic-name">Your results</p>
+        <div class="score"><strong id="score">0</strong><span>points scored</span></div>
+        <div class="details">
+            <span>Correct: <strong id="correct-count">0</strong></span>
+            <span>Wrong: <strong id="wrong-count">0</strong></span>
+        </div>
+        <div class="badge" id="badge-panel">
+            <strong id="badge-name">Topic Badge</strong>
+            <span id="badge-status">Badge earned</span>
+        </div>
+        <a class="back" href="categories.html">Go Back to Categories</a>
+    </main>
+    <script>
+        const topicDetails = {
+            cybercrime: { title: "Cybercrime & Digital Privacy", badge: "Cybercrime Defender" },
+            consumer: { title: "Consumer Rights", badge: "Consumer Champion" },
+            road: { title: "Road Safety", badge: "Road Safety Guardian" },
+            fundamental: { title: "Fundamental & Student Rights", badge: "Rights Advocate" }
+        };
+        const topic = new URLSearchParams(window.location.search).get("topic");
+        const details = topicDetails[topic];
+        const playerName = localStorage.getItem("currentPlayerName");
+        const progress = JSON.parse(localStorage.getItem("lawlinkQuizProgress") || "{}");
+        const result = details && progress[topic];
+        const completed = Boolean(result?.completed && Object.keys(result.answers || {}).length === 5);
+        const badgeEarned = completed && Number(result.score) === 500;
+
+        if (playerName) document.getElementById("player-name").textContent = playerName;
+        if (details) document.getElementById("topic-name").textContent = details.title;
+        if (completed) {
+            const answers = Object.values(result.answers || {});
+            document.getElementById("score").textContent = result.score;
+            document.getElementById("correct-count").textContent = answers.filter((answer) => answer.correct).length;
+            document.getElementById("wrong-count").textContent = answers.filter((answer) => !answer.correct).length;
+            document.getElementById("badge-name").textContent = details.badge;
+            if (!badgeEarned) {
+                document.getElementById("badge-panel").classList.add("pending");
+                document.getElementById("badge-status").textContent = `You need ${500 - Number(result.score)} more points to earn this badge.`;
+            }
+        } else {
+            document.getElementById("badge-panel").hidden = true;
+            document.getElementById("topic-name").textContent = "No completed quiz results were found.";
+        }
+        if (badgeEarned) document.getElementById("badge-status").textContent = "Badge earned";
+    </script>
+</body>
+</html>
