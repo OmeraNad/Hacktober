@@ -158,8 +158,40 @@ h3 {
     transform: translateY(-2px);
 }
 
+
+
 /* Active press down click state */
 .b1:active, .b2:active {
     transform: translateY(1px);
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.25rem; /* Shrinks the massive 4.5rem title so it fits on a phone screen */
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .button-wrapper {
+        flex-direction: column; /* Switches side-by-side buttons into a vertical stack */
+        gap: 1rem;
+    }
+
+    .b1, .b2 {
+        width: 100%; /* Makes buttons wide and easy to tap with a thumb */
+        text-align: center;
+        white-space: normal; /* Safely wraps long text onto a new line if needed */
+        padding: 1rem 1.5rem;
+        font-size: 1.15rem;
+    }
 }
