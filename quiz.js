@@ -5,7 +5,12 @@
         road: { title: "Road Safety", badge: "Road Safety Guardian" },
         fundamental: { title: "Fundamental & Student Rights", badge: "Rights Advocate" }
     };
-    const storageKey = "lawlinkQuizProgress";
+    const activePlayerName = (localStorage.getItem("currentPlayerName") || "").trim();
+    const activePlayerId = activePlayerName.toLocaleLowerCase();
+    const storageKey = activePlayerId
+        ? `lawlinkQuizProgress:${encodeURIComponent(activePlayerId)}`
+        : "lawlinkQuizProgress";
+    const leaderboardKey = "lawlinkLeaderboard";
     const fileName = window.location.pathname.split("/").pop().toLowerCase();
     const quizMatch = fileName.match(/^(page|cspage|frpage|rspage)([1-5])\.html$/);
     const topicFromFile = {
@@ -31,6 +36,25 @@
 
     function writeProgress(progress) {
         localStorage.setItem(storageKey, JSON.stringify(progress));
+        updateLeaderboard(progress);
+    }
+
+    function updateLeaderboard(progress) {
+        if (!activePlayerName) return;
+
+        let leaderboard = {};
+        try {
+            leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || {};
+        } catch {
+            leaderboard = {};
+        }
+
+        const score = Object.values(progress).reduce(
+            (total, topicProgress) => total + (Number(topicProgress.score) || 0),
+            0
+        );
+        leaderboard[activePlayerId] = { name: activePlayerName, score };
+        localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
     }
 
     function startTopic(topic) {

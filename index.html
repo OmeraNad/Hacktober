@@ -188,13 +188,36 @@
             // 1. Prevent the local server from refreshing the page or causing a 405 error
             e.preventDefault();
             
-            // 2. Extract the exact value input by the player
-            const usernameInput = document.getElementById('username').value;
-            
-            // 3. Write it directly onto the browser's persistent sandbox notepad
+            const usernameInput = document.getElementById('username').value.trim();
+            if (!usernameInput) return;
+
+            const previousName = (localStorage.getItem('currentPlayerName') || '').trim();
+            const legacyProgress = localStorage.getItem('lawlinkQuizProgress');
+            if (legacyProgress) {
+                const legacyOwner = (previousName || usernameInput).toLocaleLowerCase();
+                const legacyKey = `lawlinkQuizProgress:${encodeURIComponent(legacyOwner)}`;
+                if (!localStorage.getItem(legacyKey)) localStorage.setItem(legacyKey, legacyProgress);
+                localStorage.removeItem('lawlinkQuizProgress');
+            }
+
             localStorage.setItem('currentPlayerName', usernameInput);
-            
-            // 4. Open the categories dashboard, which displays the saved username
+
+            const playerId = usernameInput.toLocaleLowerCase();
+            const progressKey = `lawlinkQuizProgress:${encodeURIComponent(playerId)}`;
+            const progress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+            const score = Object.values(progress).reduce(
+                (total, topic) => total + (Number(topic.score) || 0),
+                0
+            );
+            let leaderboard = {};
+            try {
+                leaderboard = JSON.parse(localStorage.getItem('lawlinkLeaderboard')) || {};
+            } catch {
+                leaderboard = {};
+            }
+            leaderboard[playerId] = { name: usernameInput, score };
+            localStorage.setItem('lawlinkLeaderboard', JSON.stringify(leaderboard));
+
             window.location.href = "categories.html"; 
         });
     </script>

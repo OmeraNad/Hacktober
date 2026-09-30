@@ -76,7 +76,11 @@
         const topic = new URLSearchParams(window.location.search).get("topic");
         const details = topicDetails[topic];
         const playerName = localStorage.getItem("currentPlayerName");
-        const progress = JSON.parse(localStorage.getItem("lawlinkQuizProgress") || "{}");
+        const playerId = (playerName || "").trim().toLocaleLowerCase();
+        const progressKey = playerId
+            ? `lawlinkQuizProgress:${encodeURIComponent(playerId)}`
+            : "lawlinkQuizProgress";
+        const progress = JSON.parse(localStorage.getItem(progressKey) || "{}");
         const result = details && progress[topic];
         const completed = Boolean(result?.completed && Object.keys(result.answers || {}).length === 5);
         const badgeEarned = completed && Number(result.score) === 500;

@@ -124,6 +124,51 @@
             border-radius: 10px;
         }
 
+        .leaderboard {
+            max-width: 700px;
+            margin: 0 auto 45px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .leaderboard h2 {
+            margin-bottom: 14px;
+            color: #e2e8f0;
+            font-size: 1.1rem;
+        }
+
+        .leaderboard table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .leaderboard th,
+        .leaderboard td {
+            padding: 12px 8px;
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+
+        .leaderboard th {
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .leaderboard tbody tr {
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .leaderboard .rank,
+        .leaderboard .score {
+            width: 22%;
+            color: #a5f3fc;
+            font-weight: 700;
+        }
+
         /* CATEGORY GRID */
         .categories {
             display: grid;
@@ -251,7 +296,7 @@
         </div>
 
         <div class="nav-right">
-            <a href="#">🏠 Dashboard</a>
+            <a href="#leaderboard">🏆 Leaderboard</a>
             <a href="#">🏆 My Progress</a>
             <a href="#" class="profile">👤 <span id="display-name">Player</span></a>
         </div>
@@ -293,6 +338,20 @@
             </div>
 
         </div>
+
+        <section class="leaderboard" id="leaderboard" aria-labelledby="leaderboard-title">
+            <h2 id="leaderboard-title">Leaderboard</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="rank" scope="col">Rank</th>
+                        <th scope="col">Player</th>
+                        <th class="score" scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body"></tbody>
+            </table>
+        </section>
 
 
         <!-- CATEGORIES -->
@@ -474,7 +533,11 @@
             document.getElementById('display-name').textContent = savedName;
         }
 
-        const topicProgress = JSON.parse(localStorage.getItem('lawlinkQuizProgress') || '{}');
+        const playerId = (savedName || '').trim().toLocaleLowerCase();
+        const progressKey = playerId
+            ? `lawlinkQuizProgress:${encodeURIComponent(playerId)}`
+            : 'lawlinkQuizProgress';
+        const topicProgress = JSON.parse(localStorage.getItem(progressKey) || '{}');
         const completedTopics = Object.values(topicProgress).filter((topic) => topic.completed).length;
         const earnedBadges = Object.values(topicProgress).filter((topic) =>
             topic.badgeEarned || (
@@ -484,6 +547,40 @@
         document.getElementById('completed-count').textContent = `${completedTopics} / 6 Topics Completed`;
         document.getElementById('learning-progress').style.width = `${completedTopics / 6 * 100}%`;
         document.getElementById('badge-count').textContent = `${earnedBadges} / 6`;
+
+        let leaderboard = {};
+        try {
+            leaderboard = JSON.parse(localStorage.getItem('lawlinkLeaderboard')) || {};
+        } catch {
+            leaderboard = {};
+        }
+
+        if (savedName) {
+            const score = Object.values(topicProgress).reduce(
+                (total, topic) => total + (Number(topic.score) || 0),
+                0
+            );
+            leaderboard[playerId] = { name: savedName, score };
+            localStorage.setItem('lawlinkLeaderboard', JSON.stringify(leaderboard));
+        }
+
+        const leaderboardBody = document.getElementById('leaderboard-body');
+        const rankedPlayers = Object.values(leaderboard).sort((first, second) =>
+            Number(second.score) - Number(first.score) || first.name.localeCompare(second.name)
+        );
+        if (!rankedPlayers.length) {
+            const row = leaderboardBody.insertRow();
+            const cell = row.insertCell();
+            cell.colSpan = 3;
+            cell.textContent = 'No scores yet';
+        } else {
+            rankedPlayers.forEach((player, index) => {
+                const row = leaderboardBody.insertRow();
+                row.insertCell().textContent = String(index + 1);
+                row.insertCell().textContent = player.name;
+                row.insertCell().textContent = String(Number(player.score) || 0);
+            });
+        }
     });
 
     // Your existing category navigation function stays right here:
