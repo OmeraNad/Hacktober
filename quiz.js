@@ -111,6 +111,14 @@
         options.insertAdjacentElement("afterend", feedback);
     }
 
+    let scoreFeedback = document.getElementById("quiz-score-feedback");
+    if (!scoreFeedback) {
+        scoreFeedback = document.createElement("p");
+        scoreFeedback.id = "quiz-score-feedback";
+        scoreFeedback.style.cssText = "margin: -8px auto 16px; max-width: 760px; color: #facc15; font: 700 1rem/1.5 Arial, sans-serif; text-align: center;";
+        feedback.insertAdjacentElement("afterend", scoreFeedback);
+    }
+
     function currentTopicProgress() {
         const progress = readProgress();
         if (!progress[topic]) progress[topic] = { score: 0, answers: {}, completed: false };
@@ -118,14 +126,24 @@
         return { progress, state: progress[topic] };
     }
 
+    function renderAnswerFeedback(answer, totalScore) {
+        const points = Number.isFinite(Number(answer.points))
+            ? Number(answer.points)
+            : answer.correct ? 100 : -25;
+        const signedPoints = points > 0 ? `+${points}` : String(points);
+
+        feedback.textContent = answer.correct
+            ? answer.message || "Correct answer."
+            : "Incorrect answer.";
+        scoreFeedback.textContent = `${answer.correct ? "Correct answer" : "Incorrect answer"}: ${signedPoints} points. Total score: ${totalScore} points.`;
+    }
+
     function showRecordedAnswer() {
         const { state } = currentTopicProgress();
         const answer = state.answers[questionNumber];
         if (!answer) return;
         answerButtons.forEach((button) => { button.disabled = true; });
-        feedback.textContent = answer.correct
-            ? `Correct! +100 points. Topic score: ${state.score}.`
-            : `Incorrect. -25 points. Topic score: ${state.score}.`;
+        renderAnswerFeedback(answer, state.score);
     }
 
     showRecordedAnswer();
@@ -146,13 +164,12 @@
             const correctMessage = alertMatch?.[2].trim();
             const points = correct ? 100 : -25;
             state.score += points;
-            state.answers[questionNumber] = { correct, points };
+            const answer = { correct, points, message: correctMessage || "" };
+            state.answers[questionNumber] = answer;
             writeProgress(progress);
 
             answerButtons.forEach((button) => { button.disabled = true; });
-            feedback.textContent = correct
-                ? correctMessage || `Correct! +100 points. Topic score: ${state.score}.`
-                : `Incorrect. -25 points. Topic score: ${state.score}.`;
+            renderAnswerFeedback(answer, state.score);
             return;
         }
 
