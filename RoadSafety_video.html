@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Road Safety Awareness: Think Safe, Drive Safe</title><style>
+:root{--bg:#0f172a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f172a}}:root[data-theme="dark"]{--bg:#0f172a}
+html,body{height:100%;margin:0;background:var(--bg);font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#fff}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#box{position:relative;overflow:hidden}#st{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fff;overflow:hidden}
+#st svg{position:absolute;left:0;top:0;width:1920px;height:1080px}
+.mv{animation-name:mv;animation-timing-function:linear;animation-fill-mode:both}@keyframes mv{from{transform:translate(var(--ax),var(--ay))}to{transform:translate(var(--bx),var(--by))}}
+.dash{animation:dash 1s linear infinite}@keyframes dash{to{stroke-dashoffset:-120}}
+.bob{animation:bob .9s ease-in-out infinite alternate}@keyframes bob{to{transform:translateY(-10px)}}
+.blink{animation:bl .8s steps(2) infinite}@keyframes bl{50%{opacity:.15}}
+.lr{animation:lr 16s steps(1) infinite}.lg{animation:lg 16s steps(1) infinite}
+@keyframes lr{0%,49.9%{opacity:1}50%,100%{opacity:.15}}@keyframes lg{0%,49.9%{opacity:.15}50%,100%{opacity:1}}
+.pa{animation:fo 0s 8s forwards}@keyframes fo{to{opacity:0}}.pb{opacity:0;animation:fi 0s 8s forwards}@keyframes fi{to{opacity:1}}
+.rain{animation:rn .6s linear infinite}@keyframes rn{from{transform:translate(0,-100px)}to{transform:translate(-40px,1100px)}}
+.pulse{animation:pl .8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}@keyframes pl{to{transform:scale(1.15)}}
+.ov{position:absolute;left:0;right:0;text-align:center;pointer-events:none}
+#cap{top:50px;font-size:60px;font-weight:800}#cap span{display:inline-block;background:#1d4ed8;border:6px solid #facc15;border-radius:60px;padding:14px 50px;animation:pop .6s both}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+#sub{bottom:34px}#sub span{display:inline-block;max-width:1500px;background:rgba(15,23,42,.82);font-size:42px;line-height:1.3;padding:12px 34px;border-radius:16px}
+#prom{top:70px;left:210px;right:210px;background:#fffbe6;color:#0f172a;border:8px solid #16a34a;border-radius:34px;padding:34px 50px;font-size:46px;font-weight:700;line-height:1.35}
+#slog{top:380px;font-size:96px;font-weight:900;color:#fff;text-shadow:0 6px 0 #1d4ed8,0 0 30px #1d4ed8}
+#end{inset:0;background:linear-gradient(135deg,#1d4ed8,#0ea5e9);display:flex;flex-direction:column;align-items:center;justify-content:center}
+#end b{font-size:110px;color:#fff}#end i{font-size:70px;color:#facc15;font-style:normal;font-weight:800;margin-top:20px}
+#go{position:absolute;inset:0;background:rgba(15,23,42,.75);color:#fff;font-size:70px;font-weight:800;border:0;cursor:pointer}
+#ctl{display:flex;gap:10px;align-items:center;padding:10px}#ctl button{background:#1d4ed8;color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:15px;cursor:pointer}#ctl input{flex:1}
+
+.quiz-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    padding: 14px 30px;
+
+    background: #2563EB;
+    color: white;
+
+    border: 2px solid #1E1B48;
+    border-radius: 12px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    box-shadow: 0 5px 15px rgba(34, 211, 238, 0.5);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.quiz-btn:hover {
+    background: #3B82F6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(34, 211, 238, 0.8);
+}
+</style></head><body><div id="box"><div id="st"><div id="sv"></div>
+<div class="ov" id="cap"></div><div class="ov" id="sub"></div><div class="ov" id="prom" style="display:none">I promise to follow traffic rules, wear protective gear, avoid distractions, respect pedestrians, and help make roads safer for everyone.</div><div class="ov" id="slog" style="display:none">Think Safe. Drive Safe. Save Lives.</div><div class="ov" id="end" style="display:none"><b>Think Safe, Drive Safe</b><i>Every Life Matters.</i></div>
+<button id="go">▶ Play (turn sound on)</button></div></div>
+<div id="ctl"><button id="pp">Pause</button><button id="rs">Restart</button><button id="mu">Mute</button><input id="sk" type="range" min="0" max="170" step="1" value="0"><span id="tm">0:00 / 2:50</span></div>
+<script>
+const $=id=>document.getElementById(id);
+const mv=(i,ax,ay,bx,by,t,d=0,n='infinite')=>`<g class="mv" style="--ax:${ax}px;--ay:${ay}px;--bx:${bx}px;--by:${by}px;animation-duration:${t}s;animation-delay:${d}s;animation-iteration-count:${n}">${i}</g>`;
+const car=(x,y,c,d=1,o={})=>`<g transform="translate(${x},${y}) scale(${d},1)"><rect x="-115" y="-72" width="230" height="52" rx="16" fill="${c}"/><path d="M-60-72L-35-122H45L75-72Z" fill="${c}"/><path d="M-48-76L-30-114H-2V-76ZM8-76V-114H40L62-76Z" fill="#cfefff"/>${o.drv?'<circle cx="26" cy="-95" r="14" fill="#c68642"/>':''}${o.drv=='phone'?'<rect x="42" y="-100" width="10" height="18" rx="2" fill="#111"/>':''}${o.belt?`<path d="M14-82L38-116" stroke="${o.belt}" stroke-width="5"/>`:''}${o.roof?`<rect x="-20" y="-142" width="50" height="20" rx="4" fill="#111"/><text x="5" y="-127" font-size="14" fill="#facc15" text-anchor="middle" font-weight="700">${o.roof}</text>`:''}<circle cx="-65" cy="-20" r="24" fill="#1f2937"/><circle cx="65" cy="-20" r="24" fill="#1f2937"/><circle cx="-65" cy="-20" r="10" fill="#cbd5e1"/><circle cx="65" cy="-20" r="10" fill="#cbd5e1"/><rect x="104" y="-58" width="12" height="14" rx="4" fill="#fde047"/><rect x="-116" y="-58" width="8" height="14" rx="3" fill="#ef4444" ${o.brake?'class="blink"':''}/></g>`;
+const person=(x,y,sh,s=1,o={})=>`<g transform="translate(${x},${y}) scale(${s})"><rect x="-16" y="-70" width="13" height="70" rx="5" fill="#1e3a8a"/><rect x="3" y="-70" width="13" height="70" rx="5" fill="#1e3a8a"/><rect x="-24" y="-140" width="48" height="76" rx="16" fill="${sh}"/>${o.bag?'<rect x="-32" y="-132" width="18" height="50" rx="8" fill="#facc15"/>':''}<circle cy="-165" r="24" fill="#d9a066"/><path d="M-25-168Q0-200 25-168Q10-180-25-168Z" fill="#1f2937"/><circle cx="-8" cy="-165" r="3"/><circle cx="8" cy="-165" r="3"/><path d="M-8-155Q0-148 8-155" stroke="#111" fill="none" stroke-width="3"/></g>`;
+const bike=(x,y,d,h,c)=>`<g transform="translate(${x},${y}) scale(${d},1)"><circle cx="-60" cy="-30" r="30" fill="none" stroke="#111" stroke-width="10"/><circle cx="65" cy="-30" r="30" fill="none" stroke="#111" stroke-width="10"/><path d="M-60-30L-20-70H35L65-30M35-70L45-100H65" stroke="${c}" stroke-width="10" fill="none"/><rect x="-35" y="-95" width="70" height="20" rx="8" fill="${c}"/><rect x="-25" y="-170" width="46" height="80" rx="16" fill="#2563eb"/><circle cx="5" cy="-192" r="22" fill="#d9a066"/>${h?'<path d="M-22-194A27 27 0 0 1 32-194Z" fill="#facc15"/><path d="M8-176V-166" stroke="#111" stroke-width="3"/>':'<path d="M-18-196Q5-222 28-196Z" fill="#1f2937"/>'}</g>`;
+const signal=(x,y)=>`<g transform="translate(${x},${y})"><rect x="-8" y="-260" width="16" height="260" fill="#374151"/><rect x="-30" y="-340" width="60" height="120" rx="12" fill="#111827"/><circle cy="-308" r="16" fill="#ef4444" class="lr"/><circle cy="-268" r="16" fill="#22c55e" class="lg"/></g>`;
+const sign=(x,y,k)=>`<g transform="translate(${x},${y})"><rect x="-5" y="-200" width="10" height="200" fill="#94a3b8"/>`+(k=='speed'?'<circle cy="-235" r="42" fill="#fff" stroke="#dc2626" stroke-width="10"/><text y="-222" text-anchor="middle" font-size="38" font-weight="800">40</text>':k=='stop'?'<polygon points="-18,-279 18,-279 44,-253 44,-217 18,-191 -18,-191 -44,-217 -44,-253" fill="#dc2626"/><text y="-228" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">STOP</text>':'<polygon points="0,-290 48,-205 -48,-205" fill="#fff" stroke="#dc2626" stroke-width="9"/><circle cy="-250" r="8"/><rect x="-6" y="-240" width="12" height="28" rx="4"/>')+'</g>';
+const zebra=(a,b)=>{let s='';for(let x=a;x<b;x+=56)s+=`<rect x="${x}" y="655" width="30" height="330" fill="#fff" opacity=".92"/>`;return s};
+const label=(x,y,t,c)=>{const w=t.length*15+50;return `<g transform="translate(${x},${y})"><rect x="${-w/2}" y="-34" width="${w}" height="52" rx="26" fill="${c}"/><text text-anchor="middle" y="4" font-size="28" font-weight="700" fill="#fff">${t}</text></g>`};
+function base(n){let b='';for(let i=0;i<12;i++){const h=150+(i*97)%150,c=n?['#22306b','#2b3b7d','#1b2555'][i%3]:['#7fb0e6','#f6d365','#9ad3b0','#ffffff'][i%4];b+=`<rect x="${i*170-20}" y="${560-h}" width="150" height="${h}" fill="${c}"/>`;for(let j=0;j<h/50-1;j++)b+=`<rect x="${i*170+5}" y="${575-h+j*45}" width="30" height="24" fill="${n?'#fde68a':'#fff'}" opacity=".7"/><rect x="${i*170+70}" y="${575-h+j*45}" width="30" height="24" fill="${n?'#fde68a':'#fff'}" opacity=".7"/>`}
+for(let i=0;i<7;i++)b+=`<rect x="${140+i*290}" y="520" width="12" height="60" fill="#7c4a1e"/><circle cx="${146+i*290}" cy="500" r="46" fill="${n?'#14532d':'#22a559'}"/>`;
+return `<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${n?'#0b1230':'#8fd3ff'}"/><stop offset="1" stop-color="${n?'#2a3a78':'#e8f7ff'}"/></linearGradient></defs><rect width="1920" height="1080" fill="url(#sk)"/><circle cx="1650" cy="140" r="60" fill="${n?'#f8fafc':'#fde047'}"/>${b}<rect y="560" width="1920" height="80" fill="${n?'#3b4a70':'#d9dee6'}"/><rect y="640" width="1920" height="360" fill="${n?'#1f2937':'#4a5568'}"/><line x1="0" x2="1920" y1="655" y2="655" stroke="#fff" stroke-width="6"/><line x1="0" x2="1920" y1="985" y2="985" stroke="#fff" stroke-width="6"/><line x1="0" x2="2000" y1="820" y2="820" stroke="#fff" stroke-width="8" stroke-dasharray="60 60" class="dash"/><rect y="1000" width="1920" height="80" fill="${n?'#3b4a70':'#cfd6df'}"/>`}
+const bobg=i=>`<g class="bob">${i}</g>`;
+const ST=person(0,0,'#2563eb',1,{bag:1});
+const S=[
+{d:15,cap:'Road Safety Awareness – Think Safe, Drive Safe',n:"Hi, I'm Arjun, a college student. Every day we share the road with cars, bikes, buses and pedestrians. Road safety is everyone's responsibility. Let's learn simple habits that help us think safe and drive safe.",
+f:()=>base()+signal(1700,640)+sign(1100,640,'ped')+mv(car(0,720,'#facc15'),-300,0,2300,0,10)+mv(car(0,720,'#22c55e'),-300,0,2300,0,10,-5)+mv(car(0,900,'#ef4444',-1),2300,0,-300,0,9,-3)+mv(bike(0,900,-1,1,'#2563eb'),2300,0,-300,0,7,-1)+mv(person(0,640,'#f97316',.7),200,0,900,0,14,-4)+bobg(person(300,1075,'#2563eb',1.7,{bag:1}))},
+{d:17,cap:'Wear a Helmet. Buckle Up.',n:"Always wear a properly fastened helmet on a two-wheeler, and make sure your pillion rider wears one too. In a car, everyone should buckle up. Helmets and seat belts greatly reduce the risk of serious injury in a crash.",
+f:()=>base()+car(480,690,'#3b82f6',1,{drv:1,belt:'#22c55e'})+label(480,520,'✔ Seat belt on','#16a34a')+car(1440,690,'#f97316',1,{drv:1})+label(1440,520,'✖ No seat belt','#dc2626')+'<line x1="960" x2="960" y1="0" y2="1080" stroke="#fff" stroke-width="6" stroke-dasharray="20 20"/>'+bobg(bike(500,985,1,1,'#3b82f6'))+label(500,1055,'✔ Helmet fastened','#16a34a')+bobg(bike(1440,985,1,0,'#f97316'))+label(1440,1055,'✖ No helmet','#dc2626')},
+{d:17,cap:'Follow Traffic Rules. Stop at Red.',n:"Traffic signals and road signs keep everyone moving safely. When the light is red, stop behind the line. Wait for green, use the zebra crossing, and always follow the signs. Rules protect you and others.",
+f:()=>base()+zebra(800,1150)+'<line x1="1200" x2="1200" y1="740" y2="985" stroke="#fff" stroke-width="10"/>'+signal(1500,640)+sign(300,640,'ped')+sign(520,640,'stop')+label(1500,270,'Red = Stop · Green = Go','#1d4ed8')+mv(car(1350,900,'#ef4444',-1,{brake:1}),0,0,-2200,0,6,8,1)+mv(car(1650,900,'#3b82f6',-1),0,0,-2300,0,7,9,1)+mv(person(0,650,'#2563eb',1.2,{bag:1}),930,0,930,340,6,1,1)},
+{d:17,cap:'Slow Down. Arrive Safely.',n:"Speed limits exist for a reason. The faster you go, the longer you need to react and stop, and the more severe a collision becomes. Follow the posted limit. It is better to arrive safely than to arrive early.",
+f:()=>base()+sign(300,640,'speed')+mv(car(0,900,'#ef4444',-1)+'<path d="M130-60H330M150-40H360M130-20H320" stroke="#fff" stroke-width="5" opacity=".8" transform="translate(0,900)"/>',2300,0,-400,0,2.2)+mv(car(0,700,'#3b82f6',1,{drv:1}),-300,0,2300,0,13)+'<text x="140" y="170" font-size="34" font-weight="700" fill="#0f172a">Stopping distance</text><rect x="140" y="190" height="34" fill="#22c55e"><animate attributeName="width" from="0" to="240" dur="3s" fill="freeze"/></rect><rect x="140" y="236" height="34" fill="#ef4444"><animate attributeName="width" from="0" to="620" dur="3s" fill="freeze"/></rect><text x="400" y="216" font-size="26" font-weight="700" fill="#0f172a">Safe speed</text><text x="780" y="262" font-size="26" font-weight="700" fill="#0f172a">High speed</text>'},
+{d:17,cap:'Eyes on the Road. Phone Away.',n:"Looking at your phone, even for a moment, is dangerous. Your eyes leave the road, and a pedestrian can suddenly step out. Put your phone away before you drive, and keep your eyes on the road.",
+f:()=>base()+zebra(700,900)+`<g class="pa">${mv(car(0,900,'#3b82f6',-1,{drv:'phone'}),2300,0,1000,0,7,0,1)}${person(800,950,'#f97316',1.2)}<g class="blink">${label(800,560,'! Near miss','#dc2626')}</g>${label(1350,600,'✖ Phone in hand','#dc2626')}</g><g class="pb">${mv(car(0,900,'#3b82f6',-1,{drv:1}),2300,0,1150,0,8,8,1)}${mv(person(0,700,'#f97316',1.2),800,0,800,270,7,8,1)}${label(1350,600,'✔ Phone away','#16a34a')}</g>`},
+{d:17,cap:'Never Drink and Drive.',n:"Alcohol slows your reaction time and clouds your judgment. If you have been drinking, do not drive. Book a taxi, call a sober friend, or use a designated driver. Never drink and drive.",
+f:()=>base(1)+'<rect x="120" y="250" width="760" height="380" rx="20" fill="#f1f5f9"/><rect x="160" y="290" width="680" height="300" fill="#fde68a"/><circle cx="200" cy="320" r="26" fill="#ef4444"/><circle cx="800" cy="330" r="26" fill="#22c55e"/>'+person(300,590,'#22c55e',.9)+person(480,590,'#a855f7',.9)+person(660,590,'#f97316',.9)+label(500,230,'Party time 🎉','#7c3aed')+mv(car(0,720,'#facc15',1,{roof:'TAXI'}),-300,0,1150,0,7,0,1)+mv(person(0,650,'#2563eb',1,{bag:1}),800,0,1000,0,9,2,1)+'<g transform="translate(1500,400)"><circle r="95" fill="#fff" stroke="#dc2626" stroke-width="14"/><text y="25" font-size="80" text-anchor="middle">🔑</text><line x1="-68" y1="-68" x2="68" y2="68" stroke="#dc2626" stroke-width="14"/></g>'+label(1500,560,'Taxi or sober driver','#16a34a')},
+{d:17,cap:'Stop. Look. Cross Safely.',n:"As a pedestrian, use the zebra crossing and follow the signal. Stop at the edge, look right, look left, and look right again. Cross only when vehicles have stopped, and never while looking at your phone.",
+f:()=>base()+zebra(780,1120)+signal(1300,640)+sign(650,640,'ped')+car(1550,900,'#ef4444',-1,{brake:1})+car(400,700,'#3b82f6',1)+`<g class="blink">${label(960,540,'Look right ◀ left ▶ right ◀','#1d4ed8')}</g>`+mv(person(0,650,'#2563eb',1.2,{bag:1}),900,0,900,340,7,2.5,1)+mv(person(0,650,'#22c55e',1.1),970,0,970,340,7,3,1)+mv(person(0,650,'#a855f7',1.1),1040,0,1040,340,7,3.5,1)},
+{d:17,cap:'Stay Alert. Keep a Safe Distance.',n:"In rain and at night, visibility drops and roads can be slippery. Switch on your headlights, slow down, and keep a bigger distance from the vehicle ahead. Brake gently and early, and stay alert.",
+f:()=>{let r='';for(let i=0;i<70;i++)r+=`<g class="rain" style="animation-delay:-${(i%9)*.07}s;animation-duration:${.5+(i%4)*.1}s"><path d="M${(i*137)%2000-40} ${(i*53)%300}l-8 30" stroke="#a5c8ff" stroke-width="3" opacity=".7"/></g>`;
+return base(1)+mv('<polygon points="885,870 450,820 450,940" fill="#fde68a" opacity=".3"/><polygon points="1534,870 1130,820 1130,940" fill="#fde68a" opacity=".3"/>'+car(1000,900,'#ef4444',-1,{brake:1})+car(1650,900,'#3b82f6',-1)+'<path d="M1125 780H1530" stroke="#facc15" stroke-width="6"/>',0,0,-450,0,17,0,1)+r+label(500,600,'Headlights ON','#1d4ed8')+label(1350,680,'Keep a safe distance','#16a34a')+label(960,1045,'Reduce speed · Brake gently and early','#2563eb')}},
+{d:17,cap:'Stay Calm. Call 112. Help Responsibly.',n:"If you see an accident, stay calm and keep yourself safe. Call one one two, India's emergency number, and follow the operator's instructions. Give clear location details, and help responsibly without moving injured people unnecessarily.",
+f:()=>base()+car(1300,700,'#3b82f6',1)+`<g transform="rotate(-6 1520 700)">${car(1520,700,'#f97316',-1)}</g><polygon points="1000,660 1035,725 965,725" fill="none" stroke="#dc2626" stroke-width="8"/><circle cx="1290" cy="640" r="8" fill="#fb923c" class="blink"/><circle cx="1530" cy="640" r="8" fill="#fb923c" class="blink"/>`+mv('<g transform="translate(0,900) scale(-1,1)"><rect x="-130" y="-110" width="260" height="90" rx="12" fill="#fff"/><rect x="60" y="-95" width="60" height="45" fill="#cfefff"/><rect x="-60" y="-90" width="18" height="50" fill="#dc2626"/><rect x="-76" y="-74" width="50" height="18" fill="#dc2626"/><circle cx="-30" cy="-118" r="10" fill="#ef4444" class="blink"/><circle cx="-80" cy="-20" r="24" fill="#1f2937"/><circle cx="80" cy="-20" r="24" fill="#1f2937"/></g>',2300,0,850,0,7,2,1)+person(560,1075,'#2563eb',1.6,{bag:1})+'<rect x="595" y="810" width="22" height="36" rx="4" fill="#111"/>'+label(700,740,'Give clear location','#1d4ed8')+'<g class="pulse"><circle cx="300" cy="290" r="110" fill="#dc2626" stroke="#fff" stroke-width="10"/><text x="300" y="316" font-size="80" font-weight="900" fill="#fff" text-anchor="middle">112</text></g>'},
+{d:19,cap:'',n:"Let's make a promise: to follow traffic rules, wear protective gear, avoid distractions, respect pedestrians, and help make roads safer for everyone. Think safe. Drive safe. Save lives.",
+f:()=>base()+signal(1700,640)+zebra(760,1000)+mv(car(0,720,'#facc15'),-300,0,2300,0,11)+mv(car(0,900,'#22c55e',-1),2300,0,-300,0,10,-4)+mv(bike(0,900,-1,1,'#2563eb'),2300,0,-300,0,8,-1)+mv(bike(0,720,1,1,'#f97316'),-300,0,2300,0,9,-2)+mv(person(0,640,'#a855f7',.7),1100,0,300,0,14,-4)+bobg(person(1500,1075,'#2563eb',1.7,{bag:1}))}
+];
+let a=0;S.forEach(s=>{s.a=a;a+=s.d;s.b=a});
+let T=0,play=false,cur=-1,last=0,mute=false,ac,mg,rg;
+const fit=()=>{const s=Math.min(innerWidth/1920,(innerHeight-60)/1080),b=$('box');b.style.width=1920*s+'px';b.style.height=1080*s+'px';$('st').style.transform=`scale(${s})`;$('ctl').style.width=1920*s+'px'};
+addEventListener('resize',fit);fit();
+function audio(){ac=new(window.AudioContext||window.webkitAudioContext)();mg=ac.createGain();mg.connect(ac.destination);const b=ac.createBuffer(1,ac.sampleRate*2,ac.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+const n=ac.createBufferSource();n.buffer=b;n.loop=true;const f=ac.createBiquadFilter();f.frequency.value=400;const g=ac.createGain();g.gain.value=.05;n.connect(f).connect(g).connect(mg);
+const h=ac.createBiquadFilter();h.type='highpass';h.frequency.value=3000;rg=ac.createGain();rg.gain.value=0;n.connect(h).connect(rg).connect(mg);n.start();
+[261.6,329.6,392,523.3].forEach(fr=>{const o=ac.createOscillator(),q=ac.createGain();o.frequency.value=fr;q.gain.value=.007;o.connect(q).connect(mg);o.start()})}
+function tone(f,d,t0=0,ty='square',v=.04){if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type=ty;o.frequency.value=f;g.gain.value=v;o.connect(g).connect(mg);o.start(ac.currentTime+t0);o.stop(ac.currentTime+t0+d)}
+function sfx(i){if(rg)rg.gain.value=i==7?.08:0;if([0,3,4].includes(i)){tone(420,.25);tone(520,.3,.3)}if(i==8)for(let k=0;k<6;k++)tone(k%2?900:700,.5,k*.5,'sawtooth',.03)}
+function say(t){if(!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t),v=speechSynthesis.getVoices();u.voice=v.find(x=>x.lang.replace('_','-')=='en-IN')||v.find(x=>/India/i.test(x.name))||v.find(x=>/^en/.test(x.lang))||null;u.lang='en-IN';u.rate=.95;u.volume=mute?0:1;speechSynthesis.speak(u)}
+function show(i){cur=i;const s=S[i];$('sv').innerHTML=`<svg viewBox="0 0 1920 1080">${s.f()}</svg>`;$('cap').innerHTML=s.cap?`<span>${s.cap}</span>`:'';sfx(i);if(play)say(s.n)}
+function upd(){const i=Math.min(S.findIndex(s=>T>=s.a&&T<s.b)<0?9:S.findIndex(s=>T>=s.a&&T<s.b),9);if(i!==cur)show(i);
+const s=S[i],fr=(T-s.a)/s.d,ss=s.n.match(/[^.!?]+[.!?]+/g),w=ss.map(x=>x.trim().split(/\s+/).length),tot=w.reduce((p,c)=>p+c);let c=0,k=0;for(;k<ss.length-1;k++){c+=w[k];if(fr*tot<c)break}
+$('sub').innerHTML=(i==9&&T>=164)?'':`<span>${ss[k].trim()}</span>`;
+$('prom').style.display=i==9&&T<164?'block':'none';$('slog').style.display=i==9&&T>=164&&T<167?'block':'none';$('end').style.display=i==9&&T>=167?'flex':'none';
+const m=x=>Math.floor(x/60)+':'+String(Math.floor(x%60)).padStart(2,'0');$('tm').textContent=m(T)+' / 2:50';$('sk').value=T}
+function loop(ts){if(play){T+=(ts-last)/1000;if(T>=170){T=169.99;play=false;$('pp').textContent='Replay'}}last=ts;upd();requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+$('go').onclick=()=>{$('go').style.display='none';audio();play=true;cur=-1;$('pp').textContent='Pause'};
+$('pp').onclick=()=>{if(!ac)return $('go').click();if(T>=169.9){T=0;cur=-1}play=!play;$('pp').textContent=play?'Pause':'Play';if(window.speechSynthesis){play?speechSynthesis.resume():speechSynthesis.pause()}};
+$('rs').onclick=()=>{if(!ac)return $('go').click();T=0;cur=-1;play=true;$('pp').textContent='Pause'};
+$('sk').oninput=e=>{T=+e.target.value;cur=-1};
+$('mu').onclick=()=>{mute=!mute;if(mg)mg.gain.value=mute?0:1;$('mu').textContent=mute?'Unmute':'Mute';if(mute&&window.speechSynthesis)speechSynthesis.cancel()};
+</script>
+<a href="RoadSafety.html"><button class="quiz-btn">Quiz</button></a>
+</body></html>
