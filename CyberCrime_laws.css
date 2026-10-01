@@ -40,6 +40,13 @@ body {
     margin: 0 auto;
 }
 
+.page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 20px;
+}
+
 .back-link {
     display: inline-flex;
     align-items: center;
@@ -59,6 +66,34 @@ body {
 .back-link:focus-visible {
     outline: 2px solid var(--saffron);
     outline-offset: 4px;
+}
+
+.category-button {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border: 1px solid rgba(128, 214, 179, 0.5);
+    border-radius: 4px;
+    color: var(--mint);
+    background: rgba(128, 214, 179, 0.08);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.category-button:hover,
+.category-button:focus-visible {
+    border-color: var(--mint);
+    color: var(--text);
+    background: rgba(128, 214, 179, 0.17);
+}
+
+.category-button:focus-visible {
+    outline: 2px solid var(--mint);
+    outline-offset: 3px;
 }
 
 .page-header {
