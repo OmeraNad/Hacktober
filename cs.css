@@ -85,6 +85,24 @@ h3 {
     width: 100%;
 }
 
+.laws-link {
+    margin-top: 1.5rem;
+    color: #80d6b3;
+    font-size: 0.95rem;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+}
+
+.laws-link:hover,
+.laws-link:focus-visible {
+    color: #fbbf24;
+}
+
+.laws-link:focus-visible {
+    outline: 2px solid #fbbf24;
+    outline-offset: 4px;
+}
+
 .b1-link {
     display: inline-block;
 }
