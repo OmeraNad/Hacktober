@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    color-scheme: dark;
+    --page: #102222;
+    --surface: #193231;
+    --text: #f4f3e9;
+    --muted: #b9c8bd;
+    --line: rgba(244, 243, 233, 0.13);
+    --saffron: #f3a64a;
+    --mint: #80d6b3;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 38px;
+    padding: 56px 24px;
+    overflow-x: hidden;
+    color: var(--text);
+    background-color: var(--page);
+    background-image:
+        radial-gradient(ellipse at 15% 12%, rgba(128, 214, 179, 0.13), transparent 38%),
+        radial-gradient(ellipse at 88% 88%, rgba(243, 166, 74, 0.12), transparent 34%),
+        linear-gradient(135deg, transparent 49.8%, rgba(255, 255, 255, 0.025) 50%, transparent 50.2%);
+    background-size: auto, auto, 34px 34px;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+h1 {
+    max-width: 780px;
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.12;
+    text-align: center;
+    animation: arrive 650ms ease-out both;
+}
+
+body > div {
+    width: min(100%, 900px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    animation: arrive 700ms 100ms ease-out both;
+}
+
+body > div > span {
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    align-items: flex-end;
+    padding: 28px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), transparent 70%), var(--surface);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+}
+
+body > div > span::before {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    color: var(--saffron);
+    content: "01 / READ";
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+body > div > span:nth-child(2)::before {
+    color: var(--mint);
+    content: "02 / WATCH";
+}
+
+body > div > span::after {
+    position: absolute;
+    top: 55px;
+    left: 28px;
+    width: 46px;
+    height: 3px;
+    background: var(--saffron);
+    content: "";
+}
+
+body > div > span:nth-child(2)::after {
+    background: var(--mint);
+}
+
+body > div > span > a {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+}
+
+body > div > span button {
+    width: 100%;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 1px solid rgba(243, 166, 74, 0.42);
+    border-radius: 5px;
+    color: var(--text);
+    background: rgba(243, 166, 74, 0.1);
+    font: 700 17px/1.35 "Trebuchet MS", Verdana, sans-serif;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+body > div > span button::after {
+    flex: 0 0 auto;
+    color: var(--saffron);
+    content: "OPEN";
+    font-size: 10px;
+    letter-spacing: 1.2px;
+}
+
+body > div > span:nth-child(2) button {
+    border-color: rgba(128, 214, 179, 0.42);
+    background: rgba(128, 214, 179, 0.1);
+}
+
+body > div > span:nth-child(2) button::after {
+    color: var(--mint);
+}
+
+body > div > span button:hover {
+    transform: translateY(-2px);
+    border-color: var(--saffron);
+    background: rgba(243, 166, 74, 0.18);
+}
+
+body > div > span:nth-child(2) button:hover {
+    border-color: var(--mint);
+    background: rgba(128, 214, 179, 0.18);
+}
+
+body > div > span button:focus-visible {
+    outline: 3px solid var(--text);
+    outline-offset: 4px;
+}
+
+@keyframes arrive {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 620px) {
+    body {
+        align-content: start;
+        gap: 28px;
+        padding: 76px 20px 36px;
+    }
+
+    h1 {
+        font-size: 36px;
+        text-align: left;
+    }
+
+    body > div {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    body > div > span {
+        min-height: 170px;
+        padding: 24px;
+    }
+
+    body > div > span::before,
+    body > div > span::after {
+        left: 24px;
+    }
+
+    body > div > span button {
+        min-height: 72px;
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}

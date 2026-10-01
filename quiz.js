@@ -86,9 +86,29 @@
 
     const topic = topicFromFile[quizMatch[1]];
     const questionNumber = Number(quizMatch[2]);
-    const answerButtons = Array.from(document.querySelectorAll(".options .A"));
     const options = document.querySelector(".options");
-    if (!topic || !options || !answerButtons.length) return;
+    if (!topic || !options) return;
+
+    const originalButtons = Array.from(options.querySelectorAll(".A"));
+    if (!originalButtons.length) return;
+
+    let shuffledButtons;
+    do {
+        shuffledButtons = [...originalButtons];
+        for (let index = shuffledButtons.length - 1; index > 0; index -= 1) {
+            const randomIndex = Math.floor(Math.random() * (index + 1));
+            [shuffledButtons[index], shuffledButtons[randomIndex]] = [
+                shuffledButtons[randomIndex],
+                shuffledButtons[index]
+            ];
+        }
+    } while (
+        shuffledButtons.length > 1 &&
+        shuffledButtons.some((button, index) => button === originalButtons[index])
+    );
+    shuffledButtons.forEach((button) => options.append(button));
+
+    const answerButtons = shuffledButtons;
 
     let nextButton = document.querySelector(".next");
     if (questionNumber === 5 && !nextButton) {
