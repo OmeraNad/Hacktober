@@ -240,6 +240,21 @@ h2 {
     font-size: 12px;
 }
 
+.source-link {
+    color: var(--mint);
+    text-underline-offset: 3px;
+}
+
+.source-link:hover,
+.source-link:focus-visible {
+    color: var(--saffron);
+}
+
+.source-link:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 3px;
+}
+
 @keyframes arrive {
     from {
         opacity: 0;
